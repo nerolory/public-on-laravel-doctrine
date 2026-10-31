@@ -96,7 +96,7 @@ final class ProfileService
     public function account(User $user): AccountData
     {
         return new AccountData(
-            id: (int) $user->getAuthIdentifier(),
+            id: $user->persistedId(),
             email: $user->getEmail(),
             emailVerified: $user->getEmailVerifiedAt() !== null,
             name: $user->getName(),
@@ -146,7 +146,7 @@ final class ProfileService
         $visible = static fn (ProfileField $field): bool => $user->isVisible($field);
 
         return new AuthorProfileData(
-            id: (int) $user->getAuthIdentifier(),
+            id: $user->persistedId(),
             name: $user->publicName(),
             avatar: $this->images->presentOrNull($user->getAvatar(), self::AUTHOR_AVATAR_WIDTH),
             birthDate: $visible(ProfileField::BirthDate) ? $user->getBirthDate() : null,

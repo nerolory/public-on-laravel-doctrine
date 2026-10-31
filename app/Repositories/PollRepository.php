@@ -176,7 +176,7 @@ final class PollRepository
             ->getQuery()
             ->getResult();
 
-        return collect($users)->keyBy(static fn (User $user): int => (int) $user->getAuthIdentifier());
+        return collect($users)->keyBy(static fn (User $user): int => $user->persistedId());
     }
 
     /**

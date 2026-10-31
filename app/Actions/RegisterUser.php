@@ -62,7 +62,7 @@ final class RegisterUser
 
         $this->consents->accept($user, $consents, $ip, $userAgent);
         $this->guard->login($user);
-        $this->events->dispatch(new UserRegistered((int) $user->getAuthIdentifier(), $this->app->getLocale()));
+        $this->events->dispatch(new UserRegistered($user->persistedId(), $this->app->getLocale()));
 
         return $user;
     }

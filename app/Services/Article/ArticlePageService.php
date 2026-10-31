@@ -86,7 +86,7 @@ final class ArticlePageService
             viewCount: $article->getViewCount(),
             author: $author === null
                 ? null
-                : new UserCardData(id: (int) $author->getAuthIdentifier(), name: $author->publicName()),
+                : new UserCardData(id: $author->persistedId(), name: $author->publicName()),
             permissions: $this->permissionsFor($article, $viewer, $isAuthor, $canModerate),
             reactions: $this->reactions->articleSummary($article, $viewer),
             head: $this->seo->article($article, $author, $tags, $sections),

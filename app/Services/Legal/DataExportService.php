@@ -40,7 +40,7 @@ final class DataExportService
     {
         return new DataExportData(
             exportedAt: new DateTimeImmutable(),
-            id: (int) $user->getAuthIdentifier(),
+            id: $user->persistedId(),
             email: $user->getEmail(),
             name: $user->getName(),
             createdAt: $user->getCreatedAt(),

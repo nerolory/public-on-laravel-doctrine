@@ -195,7 +195,7 @@ final class SeoService
         if ($author !== null) {
             $schema->author(Schema::person()
                 ->name($author->publicName())
-                ->url($this->urls->to(SiteUrls::authorPath((int) $author->getAuthIdentifier()))));
+                ->url($this->urls->to(SiteUrls::authorPath($author->persistedId()))));
         }
 
         return $schema;

@@ -75,7 +75,7 @@ final class PermissionService
     {
         return $this->canManageRoles(
             $actor,
-            (int) $target->getAuthIdentifier(),
+            $target->persistedId(),
             $this->roles($actor),
             $this->roles($target),
             $role,
@@ -96,7 +96,7 @@ final class PermissionService
         Collection $targetRoles,
         ?string $role = null,
     ): bool {
-        $isSelf = (int) $actor->getAuthIdentifier() === $targetId;
+        $isSelf = $actor->persistedId() === $targetId;
 
         if ($actor->isBanned() || $isSelf || $actorRoles->intersect(Role::MANAGERS)->isEmpty()) {
             return false;

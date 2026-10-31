@@ -111,7 +111,7 @@ final class UserRepository implements UserRepositoryContract
 
         return collect($this->entityManager->getRepository(User::class)->findBy(['id' => $ids->all()]))
             ->mapWithKeys(static fn (User $user): array => [
-                (int) $user->getAuthIdentifier() => $user->getName() . ' (' . $user->getEmail() . ')',
+                $user->persistedId() => $user->getName() . ' (' . $user->getEmail() . ')',
             ]);
     }
 

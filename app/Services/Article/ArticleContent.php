@@ -253,7 +253,7 @@ final class ArticleContent
     private function keepOwnImages(HTMLDocument $document, Collection $owners): void
     {
         $isOwner = static fn (?User $user): bool => $user !== null && $owners->contains(
-            static fn (User $owner): bool => $owner->getAuthIdentifier() === $user->getAuthIdentifier(),
+            static fn (User $owner): bool => $owner->is($user),
         );
 
         self::eachReferenced(

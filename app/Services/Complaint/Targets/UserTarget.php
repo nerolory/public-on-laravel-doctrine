@@ -90,7 +90,7 @@ final class UserTarget implements ComplaintTarget
      */
     public function isOwnedBy(object $entity, User $user): bool
     {
-        return $entity->getAuthIdentifier() === $user->getAuthIdentifier();
+        return $entity->is($user);
     }
 
     /**

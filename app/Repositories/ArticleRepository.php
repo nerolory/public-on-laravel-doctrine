@@ -38,7 +38,7 @@ final class ArticleRepository implements ModerationStore
             ->select('u')
             ->from(User::class, 'u')
             ->where('u.id = :id')
-            ->setParameter('id', $article->getUser()->getAuthIdentifier())
+            ->setParameter('id', $article->getUser()->persistedId())
             ->getQuery()
             ->getOneOrNullResult();
     }

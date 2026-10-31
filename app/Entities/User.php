@@ -9,6 +9,7 @@ use App\DTO\User\ProfileData;
 use App\DTO\User\UserData;
 use App\Enums\User\Gender;
 use App\Enums\User\ProfileField;
+use App\Traits\HasPersistedId;
 use App\Traits\NormalizesText;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
@@ -40,6 +41,7 @@ class User implements AuthenticatableContract, CanResetPasswordContract, UrlRout
 {
     use Authenticatable;
     use CanResetPassword;
+    use HasPersistedId;
     use NormalizesText;
     use Notifiable;
 
@@ -236,6 +238,14 @@ class User implements AuthenticatableContract, CanResetPasswordContract, UrlRout
     }
 
     /**
+     * Номер пользователя из базы; null до первого сохранения. Он же идентификатор входа {@see getAuthIdentifier()}.
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
      * Та же ли это учётная запись: сравнение по номеру пользователя.
      */
     public function is(?self $other): bool
@@ -258,7 +268,7 @@ class User implements AuthenticatableContract, CanResetPasswordContract, UrlRout
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->getAuthIdentifier();
+        return (string) $this->persistedId();
     }
 
     /**

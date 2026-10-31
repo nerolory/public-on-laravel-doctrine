@@ -63,7 +63,7 @@ final class UserService
     public function card(User $user): UserCardData
     {
         return new UserCardData(
-            id: (int) $user->getAuthIdentifier(),
+            id: $user->persistedId(),
             name: $user->publicName(),
             avatar: $this->images->presentOrNull($user->getAvatar(), self::CARD_AVATAR_WIDTH)?->url,
         );
@@ -149,7 +149,7 @@ final class UserService
         $this->users->save($user);
 
         if ($user->getEmail() !== $previous) {
-            $this->events->dispatch(new EmailChanged((int) $user->getAuthIdentifier(), $this->app->getLocale()));
+            $this->events->dispatch(new EmailChanged($user->persistedId(), $this->app->getLocale()));
         }
     }
 }

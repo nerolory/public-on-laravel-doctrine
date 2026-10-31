@@ -26,7 +26,7 @@ final class UpdateAdminUserRequest extends ManageUserRequest
             'last_name' => $this->personNameRules(),
             'first_name' => $this->personNameRules(),
             'middle_name' => $this->personNameRules(),
-            'email' => $this->emailRules($users, (int) $this->target()->getAuthIdentifier()),
+            'email' => $this->emailRules($users, $this->target()->persistedId()),
         ];
     }
 

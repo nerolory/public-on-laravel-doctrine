@@ -99,7 +99,7 @@ final class AlbumService
             album: $this->present($album, withModeration: $isOwner || $canModerate),
             owner: $owner->isDeleted()
                 ? null
-                : new UserCardData((int) $owner->getAuthIdentifier(), $owner->publicName()),
+                : new UserCardData($owner->persistedId(), $owner->publicName()),
             canEdit: $isOwner && ! $viewer->isBanned(),
             canModerate: $canModerate,
         );

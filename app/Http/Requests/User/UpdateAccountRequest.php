@@ -47,6 +47,6 @@ final class UpdateAccountRequest extends FormRequest
     {
         $user = $this->user();
 
-        return $user instanceof User ? (int) $user->getAuthIdentifier() : null;
+        return $user instanceof User ? $user->persistedId() : null;
     }
 }

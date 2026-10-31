@@ -59,7 +59,7 @@ final class ArticleViewService
 
         return $this->views->record(
             articleId: $article->persistedId(),
-            userId: $viewer === null ? null : (int) $viewer->getAuthIdentifier(),
+            userId: $viewer === null ? null : $viewer->persistedId(),
             visitorHash: $visitor,
             referrerHost: is_string($host) ? mb_substr($host, 0, ArticleView::REFERRER_LENGTH) : null,
             now: CarbonImmutable::now(),
