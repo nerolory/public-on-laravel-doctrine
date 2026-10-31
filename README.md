@@ -45,8 +45,8 @@ docker compose exec app php artisan key:generate # Только для ново�
 docker compose exec app php artisan doctrine:migrations:migrate --no-interaction
 docker compose exec app php artisan db:seed --class=RoleSeeder --no-interaction
 docker compose exec app php artisan db:seed --class=LanguageSeeder --no-interaction
-docker compose exec app php artisan db:seed --class=LegalDocumentSeeder --no-interaction
 docker compose exec app php artisan db:seed --class=SettingsSeeder --no-interaction
+docker compose exec app php artisan db:seed --class=LegalDocumentSeeder --no-interaction
 docker compose exec app php artisan db:seed --class=ArticleSectionSeeder --no-interaction
 docker compose exec app php artisan vendor:publish --tag=laravel-assets --force
 docker compose exec frontend npm run build:admin

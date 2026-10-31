@@ -53,11 +53,13 @@ const loadPage = (page: number) => get<ListPage<ArticleListItem>>(apiPaths.artic
       <div class="hero-main">
         <p class="eyebrow caps">
           <span class="eyebrow-dot" /> {{ $t('home.eyebrow') }} <span class="slash">/</span> {{ $t('home.issue') }}
-        </p><h1>{{ $t('home.title_line1') }}<br><em>{{ $t('home.title_line2') }}</em><br>{{
-          $t('home.title_line3')
-        }}<span
-          class="period"
-        >.</span></h1><div
+        </p><h1>
+          {{ $t('home.title_line1') }}<br><em>{{ $t('home.title_line2') }}</em><br>{{
+            $t('home.title_line3')
+          }}<span
+            class="period"
+          >.</span>
+        </h1><div
           class="hero-bottom"
         >
           <p>{{ $t('home.lead') }}</p><a

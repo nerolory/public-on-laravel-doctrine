@@ -84,7 +84,6 @@ class AppServiceProvider extends ServiceProvider
     /** Каталог медиафайлов локального диска в public: картинки отдаёт веб-сервер напрямую. */
     private const string MEDIA_DIRECTORY = 'media';
 
-
     /** Политики доступа к сущностям. */
     private const array POLICIES = [
         Album::class => AlbumPolicy::class,

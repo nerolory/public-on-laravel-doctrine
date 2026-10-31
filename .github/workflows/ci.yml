@@ -65,10 +65,12 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       # Страницы админки подключают ассеты по манифесту public/build/admin; в репозитории сборки нет.
+      # Сборка читает tsconfig из .nuxt, который создаёт nuxt prepare.
       - name: Сборка ассетов админки
         working-directory: frontend
         run: |
           npm ci
+          npx nuxt prepare
           npm run build:admin
 
       - name: Ассеты админки в public/build/admin
@@ -145,13 +147,15 @@ jobs:
       - name: Миграции на чистой базе
         run: php artisan doctrine:migrations:migrate --no-interaction
 
-      # Сидеры установки из README: роли, языки, правовые документы, настройки и разделы.
+      # Сидеры установки из README: роли, языки, настройки, правовые документы и разделы. Настройки идут раньше
+      # документов: публикация документа ставит задачу в очередь, а перед каждой задачей ApplyMailSettings
+      # читает настройки почты.
       - name: Сидеры установки
         run: |
           php artisan db:seed --class=RoleSeeder --no-interaction
           php artisan db:seed --class=LanguageSeeder --no-interaction
-          php artisan db:seed --class=LegalDocumentSeeder --no-interaction
           php artisan db:seed --class=SettingsSeeder --no-interaction
+          php artisan db:seed --class=LegalDocumentSeeder --no-interaction
           php artisan db:seed --class=ArticleSectionSeeder --no-interaction
 
       # Схема после миграций совпадает с сущностями: diff не создаёт новой миграции.
