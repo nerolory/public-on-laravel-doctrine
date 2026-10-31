@@ -1,0 +1,66 @@
+// Токены админки. Цвета общие с сайтом (app/assets/scss/_variables.scss);
+// здесь размеры в rem, которые наследуют тему MoonShine.
+$admin-font-xs: .75rem;
+$admin-font-sm: .8rem;
+$admin-font-base: .875rem;
+$admin-font-md: .9rem;
+$admin-font-lg: 1rem;
+$admin-font-xl: 1.1rem;
+$admin-font-2xl: 1.2rem;
+$admin-font-3xl: 1.5rem;
+
+$admin-radius-control: .6rem;
+$admin-radius-tile: .5rem;
+$admin-radius-stat: .75rem;
+$admin-radius-dialog: 1rem;
+
+$admin-max-width: 1440px;
+
+// Ширины блоков: показатели на главной и справка по ролям.
+$admin-width-dashboard: 1200px;
+$admin-width-roles: 800px;
+
+// Ширины колонок таблиц и карточек админки в пикселях: колонки задают ширину строк и сетку карточек.
+$admin-width-bulk-select: 190px;
+$admin-width-col-check: 48px;
+$admin-width-col-icon: 28px;
+$admin-width-col-actions: 100px;
+$admin-width-col-actions-wide: 215px;
+$admin-width-col-md: 160px;
+$admin-width-col-lg: 180px;
+$admin-width-metric-min: 210px;
+$admin-width-stat-min: 140px;
+$admin-width-tops-min: 280px;
+
+// Строка списка модерации: высота текстового блока на широком и узком экране, причина отклонения в две строки
+$admin-height-row-text: 5.25rem;
+$admin-height-row-text-narrow: 4.5rem;
+$admin-height-reason: 2.7em;
+
+// Ширина окна причины отклонения
+$admin-width-dialog: 32rem;
+
+// Крупное значение показателя на карточке.
+$admin-font-stat: 2rem;
+
+// Отступы админки в rem: имя токена — сотые доли rem (75 = .75rem)
+$admin-space-15: .15rem;
+$admin-space-20: .2rem;
+$admin-space-25: .25rem;
+$admin-space-30: .3rem;
+$admin-space-35: .35rem;
+$admin-space-40: .4rem;
+$admin-space-50: .5rem;
+$admin-space-60: .6rem;
+$admin-space-65: .65rem;
+$admin-space-70: .7rem;
+$admin-space-75: .75rem;
+$admin-space-80: .8rem;
+$admin-space-90: .9rem;
+$admin-space-100: 1rem;
+$admin-space-125: 1.25rem;
+$admin-space-150: 1.5rem;
+$admin-space-200: 2rem;
+
+// Тень диалога админки: смещение и размытие без цвета; цвет задаётся рядом с токеном
+$admin-shadow-float: 0 20px 60px;

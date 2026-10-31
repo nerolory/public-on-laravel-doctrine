@@ -1,0 +1,92 @@
+@use 'variables' as *;
+
+// Общее модальное окно и баннер cookies.
+.app-dialog {
+  max-width: $width-dialog;
+  width: calc(100% - #{2 * $gutter-dialog});
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  padding: $space-28;
+  color: $color-text;
+}
+
+.app-dialog::backdrop {
+  background: rgba($color-text,.4);
+}
+
+.app-dialog h2 {
+  margin-top: 0;
+}
+
+.dialog-actions {
+  display: grid;
+  gap: $space-8;
+  margin-top: $space-20;
+}
+
+.cookie-banner {
+  position: fixed;
+  left: $space-16;
+  right: $space-16;
+  bottom: $space-16;
+  z-index: $z-banner;
+  max-width: $width-dialog;
+  margin: 0 auto;
+  padding: $space-20;
+  background: $color-white;
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  box-shadow: $shadow-lift rgba($color-text,.2);
+}
+
+.cookie-banner h2 {
+  margin: 0 0 $space-8;
+  font-size: $font-size-16;
+}
+
+.cookie-banner p {
+  margin: 0 0 $space-12;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-text-soft;
+}
+
+.cookie-options {
+  display: grid;
+  gap: $space-6;
+  margin-bottom: $space-12;
+  font-size: $font-size-base;
+}
+
+.cookie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-8;
+}
+
+.cookie-primary,
+.cookie-secondary {
+  flex: 1 1 $width-button-min;
+  padding: $space-12;
+  border: $border-width solid $color-primary;
+  font-weight: 700;
+  font-size: $font-size-base;
+}
+
+.cookie-primary {
+  background: $color-primary;
+  color: $color-white;
+}
+
+.cookie-secondary {
+  background: $color-white;
+  color: $color-primary;
+}
+
+.cookie-link {
+  border: 0;
+  background: none;
+  color: $color-primary-soft;
+  text-decoration: underline;
+  font-size: $font-size-base;
+}

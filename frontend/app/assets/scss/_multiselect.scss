@@ -1,0 +1,159 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Мультиселект разделов.
+.multiselect {
+  position: relative;
+  display: grid;
+  gap: $space-8;
+  font-size: $font-size-label;
+}
+
+.multiselect-label {
+  font-weight: 700;
+}
+
+.multiselect-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-6;
+  min-height: $size-field-min;
+  padding: $space-8 $space-44 $space-8 $space-10;
+  background: $color-white;
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  cursor: pointer;
+  position: relative;
+}
+
+.multiselect-control.open,
+.multiselect-control:focus-within {
+  @include field-focus;
+}
+
+.multiselect-placeholder {
+  color: $color-muted;
+  font-size: $font-size-base;
+  padding-left: $space-4;
+}
+
+.multiselect-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-6;
+  padding: $space-5 $space-6 $space-5 $space-12;
+  border-radius: $radius-pill;
+  background: $color-primary;
+  color: $color-white;
+  font-family: $font-label;
+  @include caption-caps($font-size-tag, $tracking-80, 700);
+  text-transform: uppercase;
+}
+
+.multiselect-chip button {
+  display: grid;
+  place-items: center;
+  width: $size-icon-sm;
+  height: $size-icon-sm;
+  padding: 0;
+  border: 0;
+  border-radius: $radius-round;
+  background: rgba($color-white,.15);
+  color: $color-white;
+  font-size: $font-size-base;
+  line-height: 1;
+}
+
+.multiselect-chip button:hover {
+  background: $color-accent;
+}
+
+.multiselect-toggle {
+  position: absolute;
+  right: $space-6;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $size-control-sm;
+  height: $size-control-sm;
+  border: 0;
+  border-radius: $radius-round;
+  background: transparent;
+  color: $color-primary-soft;
+  font-size: $font-size-body;
+}
+
+.multiselect-toggle:hover {
+  background: $color-surface;
+}
+
+.multiselect-chip button:focus-visible,
+.multiselect-toggle:focus-visible {
+  @include focus-ring;
+}
+
+.multiselect-panel {
+  @include dropdown-panel;
+  z-index: $z-panel;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: $space-6;
+}
+
+.multiselect .multiselect-search {
+  width: 100%;
+  padding: $space-12 $space-14;
+  border: 0;
+  border-bottom: $border-width solid $color-hairline;
+  outline: none;
+  font: inherit;
+  font-size: $font-size-base;
+
+  &:focus-visible {
+    @include focus-ring($focus-offset-inner);
+  }
+}
+
+.multiselect-options {
+  max-height: $height-options;
+  overflow-y: auto;
+  padding: $space-6 0;
+}
+
+.multiselect .multiselect-option {
+  display: flex;
+  align-items: center;
+  gap: $space-10;
+  padding-top: $space-8;
+  padding-bottom: $space-8;
+  padding-right: $space-12;
+  // Отступ по уровню раздела: --level задаёт компонент, при поиске он равен нулю.
+  padding-left: calc(#{$multiselect-indent} + var(--level) * #{$multiselect-indent-step});
+  font-size: $font-size-base;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.multiselect-option:hover {
+  background: $color-surface;
+}
+
+.multiselect .multiselect-option.root {
+  font-weight: 800;
+}
+
+.multiselect .multiselect-option input {
+  width: $size-icon-xs;
+  height: $size-icon-xs;
+  padding: 0;
+  accent-color: $color-primary;
+  margin: 0;
+  flex: none;
+}
+
+.multiselect-empty {
+  margin: 0;
+  padding: $space-12 $space-14;
+  color: $color-muted;
+}

@@ -1,0 +1,39 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.footer {
+  background: $color-footer-bg;
+  color: $color-footer-text;
+}
+
+.footer-inner {
+  width: $container-width;
+  margin: auto;
+  padding: $space-58 0 $space-40;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-brand {
+  font-size: $font-size-25;
+  font-weight: 800;
+}
+
+.footer-brand span {
+  color: $color-footer-accent;
+  margin-left: $space-10;
+}
+
+.footer p {
+  font-size: $font-size-label;
+  color: $color-footer-muted;
+  line-height: 1.8;
+}
+
+.footer-meta {
+  display: flex;
+  gap: $space-30;
+  align-items: end;
+  @include caption-caps($font-size-micro, $tracking-120);
+  color: $color-footer-muted;
+}

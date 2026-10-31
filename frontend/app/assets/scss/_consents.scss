@@ -1,0 +1,77 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Соцсети и согласия.
+.social-buttons {
+  display: grid;
+  gap: $space-8;
+  margin-top: $space-22;
+}
+
+.social-or {
+  font-size: $font-size-label;
+  color: $color-muted;
+  margin: 0;
+}
+
+.social-button {
+  display: block;
+  padding: $space-12 $space-16;
+  border: $border-width solid $color-border;
+  background: $color-white;
+  font-size: $font-size-base;
+  font-weight: 700;
+  text-align: center;
+}
+
+.social-button:hover {
+  border-color: $color-primary;
+}
+
+.consents {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $space-12;
+}
+
+.consents legend {
+  @include field-caption;
+  margin-bottom: $space-6;
+}
+
+.form-card .consent-check {
+  display: flex;
+  gap: $space-10;
+  align-items: flex-start;
+  font-weight: 500;
+}
+
+.form-card .consent-check input {
+  width: $size-icon-md;
+  height: $size-icon-md;
+  padding: 0;
+  flex: none;
+  margin-top: 0;
+  accent-color: $color-primary;
+}
+
+.consent-check small {
+  color: $color-muted;
+}
+
+.consent-text summary {
+  cursor: pointer;
+  font-size: $font-size-label;
+  color: $color-primary-soft;
+}
+
+.consent-text p {
+  white-space: pre-wrap;
+  font-size: $font-size-label;
+  line-height: 1.6;
+  color: $color-text-soft;
+  max-height: $height-consent-text;
+  overflow: auto;
+}

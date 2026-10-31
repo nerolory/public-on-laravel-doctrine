@@ -1,0 +1,54 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Фильтр статей по разделам.
+.section-filter {
+  display: grid;
+  gap: $space-12;
+  margin: -$space-8 0 $space-34;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-10;
+}
+
+.filter-chip {
+  border: $border-width solid $color-border-strong;
+  border-radius: $radius-pill;
+  padding: $space-9 $space-16;
+  font-family: $font-label;
+  @include caption-caps($font-size-tag, $tracking-150, 700);
+  text-transform: uppercase;
+  color: $color-text-soft;
+  transition: $duration-base;
+}
+
+.filter-chip:hover {
+  border-color: $color-primary;
+  color: $color-primary;
+}
+
+.filter-chip.active {
+  background: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
+}
+
+.filter-chip:focus-visible {
+  @include focus-ring;
+}
+
+.filter-row-sub .filter-chip {
+  padding: $space-7 $space-14;
+  @include caption-caps($font-size-micro, $tracking-120);
+  background: $color-surface;
+  border-color: $color-header-line;
+}
+
+.filter-row-sub .filter-chip.active {
+  background: $color-accent;
+  border-color: $color-accent;
+  color: $color-white;
+}

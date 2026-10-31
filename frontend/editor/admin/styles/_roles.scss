@@ -1,0 +1,8 @@
+@use 'variables' as *;
+
+// Справка по ролям и их правам.
+.roles {
+  max-width: $admin-width-roles;
+  display: grid;
+  gap: $admin-space-100;
+}

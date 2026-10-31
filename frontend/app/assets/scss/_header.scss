@@ -1,0 +1,90 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.header {
+  border-bottom: $border-width solid $color-header-line;
+  background: $color-page;
+}
+
+.header-inner {
+  max-width: $header-width;
+  height: $height-header;
+  margin: auto;
+  padding: 0 $space-48;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  gap: $space-11;
+  align-items: center;
+  font-size: $font-size-19;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.brand i,
+.footer-brand i {
+  @include serif-accent;
+}
+
+.brand small {
+  display: block;
+  @include caption-caps($font-size-nano, $tracking-170);
+  margin-top: $space-7;
+  color: $color-muted;
+}
+
+.brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $size-brand-mark;
+  height: $size-brand-mark;
+  border: $border-width-logo solid $color-brand-line;
+  border-radius: $radius-round;
+  font: 700 #{$font-size-17} $font-serif;
+}
+
+.brand-mark span {
+  color: $color-brand-accent;
+}
+
+.header nav {
+  display: flex;
+  gap: $space-40;
+  font-size: $font-size-base;
+  font-weight: 700;
+}
+
+.header nav a:hover,
+.account-link:hover {
+  color: $color-accent-dark;
+}
+
+.account-link {
+  font-size: $font-size-base;
+  font-weight: 700;
+}
+
+.account-link span {
+  margin-left: $space-10;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: $space-20;
+}
+
+@media (max-width:$bp-400) {
+  .header-actions {
+    gap: $space-10;
+  }
+
+  .account-link span {
+    margin-left: $space-3;
+  }
+}

@@ -1,0 +1,317 @@
+// Палитра и токены сайта, редактора и админки. Значения по ролям; новые цвета и размеры добавляются сюда.
+
+// Текст и фон
+$color-text: #203125;
+$color-text-soft: #4d6450;
+$color-muted: #5f6f5c;
+$color-page: #f7f7ef;
+$color-surface: #eef3e9;
+$color-white: #fff;
+$color-code-bg: #f3f5f0;
+$color-ink: #0f172a;
+$color-slate: #64748b;
+$color-slate-strong: #475569;
+$color-link: #445fe5;
+$color-shadow: #2031251f;
+
+// Линии и рамки
+$color-header-line: #dfe4d8;
+$color-border: #d5dfd0;
+$color-border-strong: #c9d3c3;
+$color-rule: #cfd9ca;
+$color-hairline: #e3e9de;
+$color-outline: #9eac98;
+
+// Акценты
+$color-primary: #254634;
+$color-primary-soft: #365c40;
+$color-primary-light: #557e60;
+$color-primary-hover: #203b2c;
+$color-accent: #d47c58;
+$color-accent-dark: #9a4a2c;
+$color-accent-deep: #8a4b2f;
+$color-accent-dot: #db8a65;
+$color-accent-mine: #b35c3a;
+$color-lime: #d5e59c;
+$color-tag-text: #a15f45;
+
+// Ошибки, предупреждения и подтверждения
+$color-error: #a63f36;
+$color-error-dark: #8f2e25;
+$color-error-hover: #ba3939;
+$color-error-surface: #fff5f4;
+$color-danger: #a55445;
+$color-danger-text: #8b5a4d;
+$color-success: #39764a;
+$color-rejection: #c0473b;
+$color-rejection-text: #5e2a24;
+
+// Статусы статьи и альбома: цвет фона, текста и рамки для каждого состояния
+$color-pending-bg: #fff3cf;
+$color-pending-text: #6b4a00;
+$color-pending-border: #e7dcb8;
+$color-pending-surface: #fffaea;
+$color-published-bg: #e3f2e7;
+$color-published-text: #1f5a33;
+$color-published-border: #b9e0c9;
+$color-rejected-bg: #fde8e6;
+$color-rejected-border: #f0c9c4;
+
+// Декор: логотип, герой, блоки о проекте и подвал
+$color-brand-line: #274832;
+$color-brand-accent: #ed8f65;
+$color-about-star: #d07f5c;
+$color-mark-muted: #c9d0bf;
+$color-empty-symbol: #afc49e;
+$color-art-bg: #dce7d4;
+$color-art-ground: #a7c295;
+$color-art-orbit: #adc2a1;
+$color-art-star: #f4f4d9;
+$color-intro-text: #e6edda;
+$color-intro-caption: #a8bd9f;
+$color-footer-bg: #1e382b;
+$color-footer-text: #e3ebdb;
+$color-footer-accent: #d3e3a2;
+$color-footer-muted: #a4baa7;
+
+// Шрифты
+$font-sans: Manrope,Arial,sans-serif;
+$font-serif: Georgia,serif;
+$font-label: 'DM Sans',sans-serif;
+$font-mono: ui-monospace,monospace;
+
+// Размеры текста (px): шкала без повторов; имена по роли для частых размеров, числа — для заголовков и декора
+$font-size-nano: 8px;
+$font-size-micro: 9px;
+$font-size-tag: 10px;
+$font-size-caption: 11px;
+$font-size-label: 12px;
+$font-size-base: 13px;
+$font-size-body: 14px;
+$font-size-text: 15px;
+$font-size-16: 16px;
+$font-size-17: 17px;
+$font-size-18: 18px;
+$font-size-19: 19px;
+$font-size-20: 20px;
+$font-size-21: 21px;
+$font-size-22: 22px;
+$font-size-23: 23px;
+$font-size-24: 24px;
+$font-size-25: 25px;
+$font-size-26: 26px;
+$font-size-27: 27px;
+$font-size-28: 28px;
+$font-size-30: 30px;
+$font-size-35: 35px;
+$font-size-36: 36px;
+$font-size-49: 49px;
+$font-size-58: 58px;
+$font-size-150: 150px;
+
+// Заголовки с адаптивным размером
+$font-size-hero: clamp(54px,6.5vw,91px);
+$font-size-hero-mobile: clamp(50px,12vw,76px);
+$font-size-section-title: clamp(40px,5vw,62px);
+$font-size-page-title: clamp(42px,5vw,62px);
+$font-size-reading-title: clamp(42px,5.5vw,75px);
+$font-size-account-title: clamp(36px,5vw,56px);
+
+// Скругления, переходы и слои
+$radius-base: 3px;
+$radius-soft: 4px;
+$radius-pill: 999px;
+$radius-round: 50%;
+$radius-arch: 180px;
+$duration-base: .2s;
+$z-decor: 1;
+$z-decor-top: 2;
+$z-panel: 5;
+$z-fab: 10;
+$z-menu: 20;
+$z-banner: 30;
+
+// Брейкпоинты (px): ширина экрана, ниже которой меняется раскладка
+$bp-400: 400px;
+$bp-600: 600px;
+$bp-700: 700px;
+$bp-750: 750px;
+$bp-900: 900px;
+$bp-1000: 1000px;
+
+// Ширины контейнеров
+$container-width: min(1200px,calc(100% - 64px));
+$container-width-narrow: calc(100% - 36px);
+$header-width: 1320px;
+
+// Отступы мультиселекта: база и шаг на каждый уровень раздела
+$multiselect-indent: 12px;
+$multiselect-indent-step: 18px;
+
+// Аватары: большой в кабинете и на странице автора, средний в меню и комментариях, малый в ответах
+$avatar-size-large: 96px;
+$avatar-size-medium: 40px;
+$avatar-size-small: 32px;
+
+// Редактор статьи: минимальная высота области текста и ширина окон редактора
+$editor-surface-min-height: 280px;
+
+// Панель редактора: кнопок в ряду, когда 17 кнопок основной панели (editor/rich-editor/toolbar.ts) стоят в два ряда
+$editor-toolbar-row-buttons: 9;
+// Рядов панели: на поле телефона уже ширины двух рядов и на остальных экранах
+$editor-toolbar-rows-narrow: 3;
+$editor-toolbar-rows: 2;
+$editor-dialog-width: 480px;
+$editor-dialog-width-wide: 760px;
+
+// Толщина границ: базовая рамка, полоса-акцент слева у цитат и уведомлений, контур логотипа
+$border-width: 1px;
+$border-width-thick: 2px;
+$border-width-accent: 3px;
+$border-width-logo: 1.5px;
+
+// Кольцо фокуса: толщина и смещение от края элемента; внутри списков кольцо уходит внутрь
+$focus-width: 3px;
+$focus-width-thin: 2px;
+$focus-offset-inner: -3px;
+$focus-offset-tight: 1px;
+$focus-offset: 2px;
+$focus-offset-wide: 3px;
+$focus-offset-loose: 4px;
+
+// Отступы, поля и смещения позиции (px): имя токена равно значению в пикселях, каждое значение заведено один раз
+$space-2: 2px;
+$space-3: 3px;
+$space-4: 4px;
+$space-5: 5px;
+$space-6: 6px;
+$space-7: 7px;
+$space-8: 8px;
+$space-9: 9px;
+$space-10: 10px;
+$space-11: 11px;
+$space-12: 12px;
+$space-13: 13px;
+$space-14: 14px;
+$space-15: 15px;
+$space-16: 16px;
+$space-18: 18px;
+$space-20: 20px;
+$space-22: 22px;
+$space-24: 24px;
+$space-25: 25px;
+$space-26: 26px;
+$space-28: 28px;
+$space-30: 30px;
+$space-32: 32px;
+$space-34: 34px;
+$space-35: 35px;
+$space-36: 36px;
+$space-38: 38px;
+$space-40: 40px;
+$space-44: 44px;
+$space-45: 45px;
+$space-48: 48px;
+$space-50: 50px;
+$space-53: 53px;
+$space-55: 55px;
+$space-56: 56px;
+$space-58: 58px;
+$space-60: 60px;
+$space-65: 65px;
+$space-70: 70px;
+$space-72: 72px;
+$space-75: 75px;
+$space-80: 80px;
+$space-88: 88px;
+$space-91: 91px;
+$space-100: 100px;
+$space-103: 103px;
+$space-110: 110px;
+$space-115: 115px;
+$space-130: 130px;
+
+// Межбуквенное расстояние (em): имя — тысячные доли em, n — отрицательное значение для крупных заголовков
+$tracking-n75: -.075em;
+$tracking-n60: -.06em;
+$tracking-n40: -.04em;
+$tracking-n30: -.03em;
+$tracking-n20: -.02em;
+$tracking-20: .02em;
+$tracking-80: .08em;
+$tracking-120: .12em;
+$tracking-150: .15em;
+$tracking-160: .16em;
+$tracking-170: .17em;
+
+// Отступы относительно размера текста (em): имя — тысячные доли em; поля абзацев, заголовков и блоков статьи
+$space-em-500: .5em;
+$space-em-600: .6em;
+$space-em-1200: 1.2em;
+$space-em-1400: 1.4em;
+$space-em-1500: 1.5em;
+$space-em-1600: 1.6em;
+$space-em-2000: 2em;
+
+// Тени: смещение и размытие без цвета; цвет задаётся рядом с токеном
+$shadow-feed: 0 4px 16px;
+$shadow-lift: 0 12px 28px;
+
+// Размеры контролов, иконок и декоративных элементов
+$size-hidden: 1px;
+$size-dot: 7px;
+$size-bar: 8px;
+$size-icon-xs: 16px;
+$size-icon-sm: 18px;
+$size-icon-md: 24px;
+$size-badge: 28px;
+$size-control-sm: 32px;
+$size-control: 36px;
+$size-control-lg: 44px;
+$size-icon-lg: 48px;
+$size-round-arrow: 54px;
+$size-brand-mark: 42px;
+$size-brand-mark-mobile: 37px;
+$size-field-min: 50px;
+$size-hero-orbit: 260px;
+$size-hero-ground: 230px;
+
+// Миниатюры альбомов: ширина и высота в пропорции 4:3
+$thumb-width-sm: 80px;
+$thumb-height-sm: 60px;
+$thumb-width-md: 96px;
+$thumb-height-md: 72px;
+$thumb-width-lg: 120px;
+$thumb-height-lg: 90px;
+
+// Высоты блоков: шапка, герой, диаграммы, списки и редактор
+$height-header: 93px;
+$height-header-mobile: 75px;
+$height-intro-min: 92px;
+$height-hero-art: 385px;
+$height-hero-art-mobile: 320px;
+$height-chart: 320px;
+$height-options: 280px;
+$height-consent-text: 220px;
+$height-album-placeholder: 120px;
+
+// Ширины колонок, блоков и окон; боковой отступ окна от края экрана
+$width-card-min: 180px;
+$width-card-wide-min: 240px;
+$width-label-col: 100px;
+$width-marker-col: 45px;
+$width-button-min: 160px;
+$width-menu-min: 220px;
+$width-prose-sm: 285px;
+$width-prose: 330px;
+$width-copy-max: 480px;
+$width-media-max: 480px;
+$width-form: 490px;
+$width-dialog: 560px;
+$width-feed-text: 650px;
+$width-album-slider: 720px;
+$width-account: 760px;
+$width-reading: 800px;
+$width-input-min: 90px;
+$width-input-min-compact: 80px;
+$gutter-dialog: 16px;

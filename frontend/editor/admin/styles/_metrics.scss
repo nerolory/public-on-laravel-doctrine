@@ -1,0 +1,54 @@
+@use '../../../app/assets/scss/variables' as *;
+@use 'variables' as *;
+
+// Карточки показателей на главной странице админки.
+.dashboard-metrics {
+  max-width: $admin-width-dashboard;
+  display: grid;
+  gap: $admin-space-150;
+}
+
+.dashboard-metrics__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, $admin-width-metric-min), 1fr));
+  gap: $admin-space-100;
+}
+
+.dashboard-metrics__card,
+.dashboard-metrics__top {
+  background: var(--body-bg, #{$color-white});
+  padding: $admin-space-150;
+  border: $border-width solid rgba($color-slate, .25);
+  border-radius: $admin-radius-stat;
+}
+
+.dashboard-metrics__card h2 {
+  font-size: $admin-font-base;
+  font-weight: 600;
+}
+
+.dashboard-metrics__card p {
+  font-size: $admin-font-stat;
+  font-weight: 700;
+  margin-top: $admin-space-50;
+}
+
+.dashboard-metrics__top h2 {
+  font-size: $admin-font-xl;
+  font-weight: 700;
+}
+
+.dashboard-metrics__top > p,
+.dashboard-metrics__note {
+  font-size: $admin-font-md;
+  opacity: .7;
+  margin: $admin-space-60 0;
+}
+
+.dashboard-metrics__author {
+  display: flex;
+  justify-content: space-between;
+  gap: $admin-space-100;
+  border-top: $border-width solid rgba($color-slate, .25);
+  padding: $admin-space-80 0;
+}

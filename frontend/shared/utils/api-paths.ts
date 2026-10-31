@@ -1,0 +1,55 @@
+/** Часть адреса из идентификатора: кодируется, чтобы значение не меняло путь. */
+const segment = (value: string | number) => encodeURIComponent(String(value))
+
+/** Адреса API бэкенда: все запросы сайта и редактора берут пути отсюда. */
+export const apiPaths = {
+  csrf: '/api/csrf',
+  session: '/api/session',
+  site: '/api/site',
+  legal: '/api/legal',
+  localization: '/api/i18n',
+  translations: (code: string) => `/api/i18n/${segment(code)}`,
+  head: '/api/head',
+  login: '/api/login',
+  logout: '/api/logout',
+  register: '/api/register',
+  socialProviders: '/api/auth/providers',
+  socialPending: '/api/auth/social/pending',
+  socialComplete: '/api/auth/social/complete',
+  telegram: '/api/auth/telegram',
+  articles: '/api/articles',
+  article: (id: number | string) => `/api/articles/${segment(id)}`,
+  articleView: (id: number) => `/api/articles/${segment(id)}/view`,
+  articleComments: (id: number) => `/api/articles/${segment(id)}/comments`,
+  articleReactions: (id: number) => `/api/articles/${segment(id)}/reactions`,
+  sections: '/api/sections',
+  sectionFilter: '/api/sections/filter',
+  tags: '/api/tags',
+  comment: (id: number) => `/api/comments/${segment(id)}`,
+  commentReplies: (id: number) => `/api/comments/${segment(id)}/replies`,
+  commentReactions: (id: number) => `/api/comments/${segment(id)}/reactions`,
+  complaints: '/api/complaints',
+  pollVotes: (id: string) => `/api/polls/${segment(id)}/votes`,
+  pollVoters: (id: string, optionId: number) => `/api/polls/${segment(id)}/options/${segment(optionId)}/voters`,
+  albums: '/api/albums',
+  album: (id: string) => `/api/albums/${segment(id)}`,
+  myAlbums: '/api/my/albums',
+  myArticles: '/api/my/articles',
+  myArticle: (id: number | string) => `/api/my/articles/${segment(id)}`,
+  authors: (id: number | string) => `/api/authors/${segment(id)}`,
+  images: '/api/images',
+  charts: '/api/charts',
+  chart: (id: string) => `/api/charts/${segment(id)}`,
+  user: '/api/user',
+  userProfile: '/api/user/profile',
+  userAvatar: '/api/user/avatar',
+  userConsents: '/api/user/consents',
+  userExport: '/api/user/export',
+  emailResend: '/api/email/resend',
+} as const
+
+/** Адреса админки, на которые ведут ссылки с сайта. */
+export const adminPaths = {
+  home: '/admin',
+  articleForm: (id: number) => `/admin/page/article-form?id=${segment(id)}`,
+} as const

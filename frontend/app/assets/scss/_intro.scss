@@ -1,0 +1,35 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.intro-band {
+  background: $color-primary;
+  color: $color-intro-text;
+}
+
+.intro-inner {
+  min-height: $height-intro-min;
+  display: flex;
+  align-items: center;
+  gap: $space-22;
+}
+
+.intro-inner>span:first-child {
+  font-size: $font-size-27;
+  color: $color-lime;
+}
+
+.intro-inner p {
+  font-size: $font-size-17;
+  font-weight: 700;
+  flex: 1;
+}
+
+.intro-inner p em {
+  @include serif-accent;
+  color: $color-lime;
+}
+
+.intro-inner>span:last-child {
+  @include caption-caps($font-size-micro, $tracking-150);
+  color: $color-intro-caption;
+}

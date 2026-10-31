@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+:root {
+  font-family: $font-sans;
+  color: $color-text;
+  background: $color-page;
+  font-synthesis: none;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.wrap {
+  width: $container-width;
+  margin: 0 auto;
+}

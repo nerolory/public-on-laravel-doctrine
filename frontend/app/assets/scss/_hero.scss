@@ -1,0 +1,151 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.hero {
+  padding: $space-88 0 $space-91;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: $space-65;
+  align-items: end;
+}
+
+.hero-main {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow-dot {
+  display: inline-block;
+  width: $size-dot;
+  height: $size-dot;
+  background: $color-accent-dot;
+  border-radius: $radius-round;
+  margin-right: $space-8;
+}
+
+.slash {
+  margin: 0 $space-13;
+  color: $color-mark-muted;
+}
+
+.hero h1,
+.form-card h1,
+.reading h1 {
+  line-height: 1.04;
+  letter-spacing: $tracking-n75;
+  font-weight: 700;
+}
+
+.hero h1 {
+  font-size: $font-size-hero;
+  margin: $space-55 0 $space-40;
+}
+
+.hero h1 em,
+.section-heading h2 em,
+.about h2 em {
+  @include serif-accent;
+}
+
+.hero-bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  max-width: $width-copy-max;
+}
+
+.hero-bottom p {
+  color: $color-muted;
+  line-height: 1.8;
+  font-size: $font-size-body;
+  max-width: $width-prose-sm;
+}
+
+.round-arrow {
+  width: $size-round-arrow;
+  height: $size-round-arrow;
+  border: $border-width solid $color-outline;
+  border-radius: $radius-round;
+  display: grid;
+  place-items: center;
+  font-size: $font-size-23;
+  transition: $duration-base;
+}
+
+.round-arrow:hover {
+  background: $color-primary-hover;
+  color: $color-white;
+}
+
+.hero-art {
+  height: $height-hero-art;
+  background: $color-art-bg;
+  border-radius: $radius-arch $radius-arch $radius-base $radius-base;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.hero-art:after {
+  content: '';
+  position: absolute;
+  bottom: -$space-115;
+  left: 8%;
+  width: 85%;
+  height: $size-hero-ground;
+  border-radius: $radius-round;
+  background: $color-art-ground;
+}
+
+.art-orbit {
+  position: absolute;
+  width: $size-hero-orbit;
+  height: $size-hero-orbit;
+  border: $border-width solid $color-art-orbit;
+  border-radius: $radius-round;
+}
+
+.orbit-one {
+  transform: rotate(35deg) scaleX(.53);
+}
+
+.orbit-two {
+  transform: rotate(-35deg) scaleX(.53);
+}
+
+.art-star {
+  position: relative;
+  z-index: $z-decor;
+  font-size: $font-size-150;
+  color: $color-art-star;
+  line-height: 1;
+}
+
+.art-label,
+.art-number {
+  position: absolute;
+  z-index: $z-decor-top;
+  @include caption-caps($font-size-micro, $tracking-160, 800);
+}
+
+.art-label {
+  top: $space-80;
+  left: $space-50;
+  line-height: 1.8;
+}
+
+.art-number {
+  right: $space-40;
+  bottom: $space-38;
+}
+
+.aside-caption {
+  display: flex;
+  justify-content: space-between;
+  @include caption-caps($font-size-micro, $tracking-160, 700);
+  color: $color-muted;
+  margin-top: $space-15;
+}

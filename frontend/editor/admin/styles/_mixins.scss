@@ -1,0 +1,64 @@
+@use 'variables' as *;
+
+// Миксины админки: блоки, общие для списков модерации и пользователей.
+
+// Страница списка: ограниченная ширина и колонка блоков.
+@mixin admin-page {
+  max-width: $admin-max-width;
+  display: grid;
+  gap: $admin-space-150;
+}
+
+// Заголовок блока.
+@mixin admin-title {
+  font-size: $admin-font-2xl;
+  font-weight: 700;
+  margin: 0;
+}
+
+// Пояснение под заголовком.
+@mixin admin-subtitle {
+  font-size: $admin-font-base;
+  opacity: .65;
+  margin: $admin-space-30 0 0;
+}
+
+// Таблица с фиксированной раскладкой колонок.
+@mixin admin-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+// Кнопки действий в строке, прижаты вправо.
+@mixin admin-action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: $admin-space-25;
+}
+
+// Таблица на узком экране: строки становятся блоками, заголовки скрываются.
+@mixin table-stack($block) {
+  .#{$block}__table,
+  .#{$block}__table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .#{$block}__table thead {
+    display: none;
+  }
+
+  .#{$block}__table .#{$block}__row td {
+    display: block;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+}
+
+// Подпись колонки в мобильной строке: текст берётся из data-label.
+@mixin cell-label {
+  content: attr(data-label) ': ';
+  font-size: $admin-font-xs;
+  opacity: .6;
+}

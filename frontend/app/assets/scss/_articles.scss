@@ -1,0 +1,87 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.articles {
+  padding: $space-103 0 $space-110;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: $space-40;
+}
+
+.section-heading h2,
+.about h2 {
+  font-size: $font-size-section-title;
+  letter-spacing: $tracking-n60;
+  margin: $space-15 0 0;
+  line-height: 1.1;
+}
+
+.section-heading>p,
+.about-copy {
+  color: $color-muted;
+  font-size: $font-size-base;
+  line-height: 1.8;
+}
+
+.empty {
+  border-top: $border-width solid $color-border-strong;
+  border-bottom: $border-width solid $color-border-strong;
+  padding: $space-56 $space-15;
+  display: flex;
+  align-items: center;
+  gap: $space-32;
+}
+
+.empty-symbol {
+  font-size: $font-size-49;
+  color: $color-empty-symbol;
+}
+
+.empty h3 {
+  margin: 0 0 $space-10;
+  font-size: $font-size-19;
+}
+
+.empty p {
+  margin: 0;
+  color: $color-muted;
+  font-size: $font-size-base;
+}
+
+.article-index {
+  font: #{$font-size-body} $font-serif;
+  color: $color-muted;
+}
+
+.article-tag {
+  @include caption-caps($font-size-micro, $tracking-150, 800);
+  color: $color-tag-text;
+}
+
+.article-arrow {
+  font-size: $font-size-22;
+  text-align: right;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $space-25;
+  margin-top: $space-35;
+}
+
+.pagination button {
+  border: 0;
+  background: none;
+  padding: $space-10;
+}
+
+.pagination button:disabled {
+  opacity: .3;
+  cursor: default;
+}

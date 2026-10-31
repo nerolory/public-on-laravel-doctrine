@@ -1,0 +1,24 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Видимый фокус для полей ввода (рамка при :focus остаётся, кольцо — для клавиатуры).
+.article-input:focus-visible,
+.form-card input:focus-visible,
+.form-card textarea:focus-visible,
+.account-section input:focus-visible,
+.account-section select:focus-visible,
+.account-section textarea:focus-visible {
+  @include focus-ring($focus-offset-tight);
+}
+
+.primary-button:focus-visible,
+.text-button:focus-visible,
+.danger-button:focus-visible,
+.text-link:focus-visible,
+.back-link:focus-visible {
+  @include focus-ring;
+}
+
+.dialog-form .consent-check {
+  font-size: $font-size-body;
+}

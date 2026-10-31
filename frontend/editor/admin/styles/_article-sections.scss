@@ -1,0 +1,13 @@
+@use 'variables' as *;
+
+// Дерево разделов: корневой раздел выделен, вложенные отступаются по уровню.
+// Уровень ограничен MAX_INDENT_LEVEL в ArticleSectionIndexPage.
+.article-admin__section--level-0 {
+  font-weight: 700;
+}
+
+@for $level from 1 through 4 {
+  .article-admin__section--level-#{$level} {
+    padding-left: $level * $admin-space-125;
+  }
+}

@@ -1,0 +1,89 @@
+@use 'variables' as *;
+
+@media (max-width:$bp-750) {
+  .wrap {
+    width: $container-width-narrow;
+  }
+
+  .header-inner {
+    height: $height-header-mobile;
+    padding: 0 $space-18;
+  }
+
+  .header nav {
+    display: none;
+  }
+
+  .brand {
+    font-size: $font-size-16;
+  }
+
+  .brand-mark {
+    width: $size-brand-mark-mobile;
+    height: $size-brand-mark-mobile;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: $space-53 0;
+    gap: $space-36;
+  }
+
+  .hero h1 {
+    margin: $space-35 0;
+    font-size: $font-size-hero-mobile;
+  }
+
+  .hero-art {
+    height: $height-hero-art-mobile;
+  }
+
+  .intro-inner>span:last-child {
+    display: none;
+  }
+
+  .intro-inner p {
+    font-size: $font-size-body;
+  }
+
+  .articles {
+    padding: $space-70 0;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading>p {
+    margin-top: $space-20;
+  }
+
+  .about {
+    grid-template-columns: $width-marker-col 1fr;
+  }
+
+  .about-star {
+    font-size: $font-size-35;
+  }
+
+  .about-copy {
+    grid-column: 2;
+    justify-self: start;
+    padding-top: 0;
+  }
+
+  .footer-inner {
+    width: $container-width-narrow;
+    display: block;
+  }
+
+  .footer-meta {
+    margin-top: $space-30;
+    flex-wrap: wrap;
+    gap: $space-15;
+  }
+
+  .form-card {
+    margin-top: $space-45;
+  }
+}

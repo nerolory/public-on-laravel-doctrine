@@ -1,0 +1,119 @@
+@use '../../../app/assets/scss/variables' as *;
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.user-admin {
+  @include admin-page;
+}
+
+.user-admin__header h2 {
+  @include admin-title;
+}
+
+.user-admin__header p {
+  @include admin-subtitle;
+}
+
+.user-admin__table {
+  @include admin-table;
+}
+
+.user-admin__table th:first-child {
+  width: 32%;
+}
+
+.user-admin__table th:nth-child(3) {
+  width: $admin-width-col-md;
+}
+
+.user-admin__table th:last-child {
+  width: $admin-width-col-actions-wide;
+}
+
+.user-admin__table td {
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.user-admin__identity strong,
+.user-admin__identity span {
+  display: block;
+}
+
+.user-admin__identity span {
+  font-size: $admin-font-sm;
+  opacity: .65;
+  margin-top: $admin-space-25;
+}
+
+.user-admin__roles {
+  font-size: $admin-font-base;
+}
+
+.user-admin__action-buttons {
+  @include admin-action-buttons;
+}
+
+.user-admin__role-menu {
+  font-size: $admin-font-sm;
+  margin-top: $admin-space-35;
+  text-align: left;
+}
+
+.user-admin__role-menu summary {
+  cursor: pointer;
+  opacity: .75;
+}
+
+.user-admin__role-options {
+  display: grid;
+  gap: $admin-space-60;
+  margin-top: $admin-space-75;
+}
+
+.user-admin__role-option {
+  display: flex;
+  align-items: center;
+  gap: $admin-space-50;
+  cursor: pointer;
+}
+
+.user-admin__unavailable {
+  display: block;
+  text-align: right;
+  opacity: .5;
+}
+
+@media (max-width: $bp-700) {
+  @include table-stack('user-admin');
+
+  .user-admin__table .user-admin__row {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    grid-template-areas: "identity actions" "roles roles" "status status";
+    gap: $admin-space-70;
+    padding: $admin-space-100 0;
+    border-bottom: $border-width solid rgba($color-slate,.2);
+  }
+
+  .user-admin__identity {
+    grid-area: identity;
+  }
+
+  .user-admin__roles {
+    grid-area: roles;
+  }
+
+  .user-admin__status {
+    grid-area: status;
+  }
+
+  .user-admin__actions {
+    grid-area: actions;
+  }
+
+  .user-admin__roles::before,
+  .user-admin__status::before {
+    @include cell-label;
+  }
+}

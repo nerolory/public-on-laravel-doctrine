@@ -1,0 +1,87 @@
+@use 'variables' as *;
+@use 'content-typography' as *;
+
+// Текст статьи из редактора и обложка.
+.article-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 $space-32;
+  border-radius: $radius-base;
+}
+
+.article-body {
+  white-space: normal;
+}
+
+.article-body>*:first-child {
+  margin-top: 0;
+}
+
+.article-body p {
+  margin: 0 0 $space-em-1200;
+}
+
+.article-body h2 {
+  @include content-h2($font-size-30, $tracking-n40, $space-em-1600 0 $space-em-600);
+}
+
+.article-body h3 {
+  @include content-h3($font-size-22, $space-em-1400 0 $space-em-500, $tracking-n20);
+}
+
+.article-body a {
+  color: $color-primary;
+  text-decoration: underline;
+  text-underline-offset: $space-3;
+}
+
+.article-body blockquote {
+  @include content-blockquote($space-em-1500 0, $space-20, $color-accent, $color-text-soft);
+}
+
+.article-body pre {
+  @include content-pre($space-16, $color-surface, $font-size-text);
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: $space-em-1400;
+  margin: 0 0 $space-em-1200;
+}
+
+.article-body figure {
+  margin: $space-em-2000 0;
+}
+
+.article-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: $radius-base;
+}
+
+.article-body figcaption {
+  @include content-figcaption($space-8, $color-muted);
+}
+
+.article-body table {
+  @include content-table($space-em-1500 0, $font-size-text);
+  display: block;
+  overflow-x: auto;
+}
+
+.article-body {
+  @include content-cell($color-border, $space-8 $space-10) {
+    text-align: left;
+  }
+}
+
+.article-body th {
+  background: $color-surface;
+}
+
+.article-body th p,
+.article-body td p {
+  margin: 0;
+}

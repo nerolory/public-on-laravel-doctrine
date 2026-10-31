@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+.reading {
+  min-height: 70vh;
+  padding: $space-55 0 $space-130;
+}
+
+.reading article {
+  max-width: $width-reading;
+  margin: $space-75 auto;
+}
+
+.reading h1 {
+  font-size: $font-size-reading-title;
+  margin: $space-25 0 $space-35;
+}
+
+.reading-rule {
+  border-top: $border-width solid $color-rule;
+}
+
+.reading-content {
+  white-space: pre-wrap;
+  font-family: $font-serif;
+  line-height: 1.95;
+  font-size: $font-size-18;
+  margin-top: $space-40;
+}
+

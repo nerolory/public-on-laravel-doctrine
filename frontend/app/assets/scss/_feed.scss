@@ -1,0 +1,86 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Адаптивная лента и возврат к началу страницы.
+.article-list {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 0 $space-28;
+}
+
+.article-row {
+  display: grid;
+  grid-template-columns: $size-control-sm minmax(0,1fr) $size-icon-md;
+  gap: $space-12;
+  padding: $space-26 0;
+  border-top: $border-width solid $color-border;
+  border-bottom: $border-width solid $color-border;
+  transition: $duration-base;
+}
+
+.article-row:hover {
+  padding-left: $space-8;
+  background: $color-surface;
+}
+
+.article-row h3 {
+  font-size: $font-size-21;
+  letter-spacing: $tracking-n40;
+  margin: $space-10 0;
+  overflow-wrap: anywhere;
+}
+
+.article-row p {
+  color: $color-muted;
+  font-size: $font-size-base;
+  line-height: 1.7;
+  max-width: $width-feed-text;
+  overflow-wrap: anywhere;
+}
+
+.back-to-top {
+  position: fixed;
+  right: $space-24;
+  bottom: $space-24;
+  z-index: $z-fab;
+  width: $size-icon-lg;
+  height: $size-icon-lg;
+  border: $border-width solid $color-outline;
+  border-radius: $radius-round;
+  background: $color-primary;
+  color: $color-white;
+  font-size: $font-size-24;
+  line-height: 1;
+  box-shadow: $shadow-feed rgba($color-text,.15);
+}
+
+.back-to-top:hover {
+  background: $color-primary-soft;
+}
+
+.back-to-top:focus-visible {
+  @include focus-ring($focus-offset-wide);
+}
+
+@media (max-width:$bp-1000) {
+  .article-list {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
+@media (max-width:$bp-600) {
+  .article-list {
+    grid-template-columns: minmax(0,1fr);
+  }
+
+  .back-to-top {
+    right: $space-16;
+    bottom: $space-16;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+}

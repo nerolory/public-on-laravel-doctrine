@@ -1,38 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
     |--------------------------------------------------------------------------
-    | Third Party Services
+    | Внешние сервисы
     |--------------------------------------------------------------------------
     |
-    | This file is for storing the credentials for third party services such
-    | as Mailgun, Postmark, AWS and more. This file provides the de facto
-    | location for this type of information, allowing packages to have
-    | a conventional file to locate the various service credentials.
+    | Неизменные адреса сторонних сервисов. Ключи доступа и включение
+    | сервисов хранятся в настройках сайта в базе данных.
     |
     */
 
-    'postmark' => [
-        'token' => env('POSTMARK_TOKEN'),
+    'yandex_metrika' => [
+        'stat_url' => 'https://api-metrika.yandex.net/stat/v1/data',
     ],
 
-    'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
-        'secret' => env('AWS_SECRET_ACCESS_KEY'),
-        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+    // Вход через Telegram: страница авторизации.
+    'telegram_login' => [
+        'auth_url' => 'https://oauth.telegram.org/auth',
     ],
 
-    'resend' => [
-        'key' => env('RESEND_KEY'),
+    // Шаблоны ссылок «поделиться»: {url} и {title} подставляются закодированными.
+    'share' => [
+        'vk' => 'https://vk.com/share.php?url={url}&title={title}',
+        'ok' => 'https://connect.ok.ru/offer?url={url}&title={title}',
+        'telegram' => 'https://t.me/share/url?url={url}&text={title}',
+        'facebook' => 'https://www.facebook.com/sharer/sharer.php?u={url}',
+        'x' => 'https://twitter.com/intent/tweet?url={url}&text={title}',
     ],
 
-    'slack' => [
-        'notifications' => [
-            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
-            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
-        ],
+    // Скрипты счётчиков: {id} — идентификатор счётчика из настроек.
+    'counters' => [
+        'yandex' => 'https://mc.yandex.ru/metrika/tag.js',
+        'ga4' => 'https://www.googletagmanager.com/gtag/js?id={id}',
+        'gtm' => 'https://www.googletagmanager.com/gtm.js?id={id}',
+        'vk' => 'https://top-fwz1.mail.ru/js/code.js',
+        'meta' => 'https://connect.facebook.net/en_US/fbevents.js',
     ],
 
 ];

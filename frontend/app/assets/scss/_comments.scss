@@ -1,0 +1,237 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Реакции и комментарии.
+.reaction-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-6;
+}
+
+.reaction {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-4;
+  min-height: $size-control-sm;
+  padding: $space-4 $space-10;
+  border: $border-width solid $color-border;
+  border-radius: $radius-pill;
+  background: $color-white;
+  color: $color-text;
+  font-size: $font-size-base;
+  font-weight: 700;
+}
+
+.reaction:not(:disabled):hover {
+  border-color: $color-primary;
+}
+
+.reaction.mine {
+  background: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
+}
+
+.reaction.mine.negative {
+  background: $color-error-dark;
+  border-color: $color-error-dark;
+}
+
+.reaction:disabled {
+  cursor: default;
+  opacity: .85;
+}
+
+.reaction:focus-visible {
+  @include focus-ring;
+}
+
+.article-reactions {
+  margin-top: $space-32;
+}
+
+.comments {
+  margin-top: $space-56;
+  padding-top: $space-32;
+  border-top: $border-width solid $color-border;
+  display: grid;
+  gap: $space-20;
+}
+
+.comments-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: $space-12;
+}
+
+.comments-head h2 {
+  margin: 0;
+  font-size: $font-size-26;
+  letter-spacing: $tracking-n30;
+}
+
+.comments-sort {
+  display: flex;
+  gap: $space-6;
+}
+
+.comment-form {
+  display: grid;
+  gap: $space-8;
+}
+
+.comment-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-12;
+}
+
+.comment-submit {
+  width: auto;
+  padding: $space-12 $space-18;
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: $avatar-size-medium minmax(0,1fr);
+  gap: $space-12;
+}
+
+.comment.reply {
+  grid-template-columns: $avatar-size-small minmax(0,1fr);
+}
+
+.comment-avatar {
+  display: grid;
+  place-items: center;
+  width: $avatar-size-medium;
+  height: $avatar-size-medium;
+  border-radius: $radius-round;
+  overflow: hidden;
+  background: $color-surface;
+  color: $color-primary;
+  font-weight: 800;
+}
+
+.comment.reply .comment-avatar {
+  width: $avatar-size-small;
+  height: $avatar-size-small;
+  font-size: $font-size-base;
+}
+
+.comment-avatar img {
+  @include cover-image;
+}
+
+.comment-main {
+  display: grid;
+  gap: $space-6;
+  min-width: 0;
+}
+
+.comment-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4 $space-10;
+  margin: 0;
+  font-size: $font-size-label;
+  color: $color-muted;
+}
+
+.comment-author {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 800;
+  color: $color-text;
+}
+
+.comment-body {
+  margin: 0;
+  white-space: pre-line;
+  font-size: $font-size-text;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.comment-mention {
+  color: $color-accent-deep;
+  font-weight: 700;
+}
+
+.comment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-6 $space-14;
+}
+
+.comment-actions .text-button,
+.comment-replies-toggle {
+  font-size: $font-size-base;
+}
+
+.comment-replies-toggle {
+  justify-self: start;
+}
+
+.comment-replies {
+  display: grid;
+  gap: $space-14;
+  margin-top: $space-6;
+}
+
+.complaint-line {
+  margin: $space-16 0 0;
+  font-size: $font-size-base;
+}
+
+.complaint-button {
+  padding: 0;
+  font-size: $font-size-base;
+  color: $color-muted;
+}
+
+.complaint-reasons {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $space-8;
+}
+
+.complaint-reasons legend {
+  @include field-caption;
+  margin-bottom: $space-6;
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-8;
+  margin-top: $space-32;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: $size-control;
+  padding: $space-6 $space-14;
+  border: $border-width solid $color-border;
+  border-radius: $radius-pill;
+  background: $color-white;
+  font-size: $font-size-base;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.share-button:hover {
+  border-color: $color-primary;
+}
+
+.share-button:focus-visible {
+  @include focus-ring;
+}

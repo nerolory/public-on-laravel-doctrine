@@ -1,0 +1,21 @@
+@use 'variables' as *;
+
+.about {
+  padding: $space-72 0 $space-100;
+  border-top: $border-width solid $color-border;
+  display: grid;
+  grid-template-columns: $width-label-col 1fr 1fr;
+  gap: $space-20;
+  align-items: start;
+}
+
+.about-star {
+  font-size: $font-size-58;
+  color: $color-about-star;
+}
+
+.about-copy {
+  max-width: $width-prose;
+  justify-self: end;
+  padding-top: $space-25;
+}

@@ -1,0 +1,128 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Личный кабинет.
+.account-layout {
+  max-width: $width-account;
+  margin: $space-40 auto 0;
+  display: grid;
+  gap: $space-28;
+}
+
+.account-head h1 {
+  font-size: $font-size-account-title;
+  margin: $space-16 0 $space-10;
+}
+
+.account-section {
+  border-top: $border-width solid $color-border;
+  padding-top: $space-24;
+}
+
+.account-section h2 {
+  font-size: $font-size-22;
+  letter-spacing: $tracking-n30;
+  margin: 0 0 $space-12;
+}
+
+.account-section form {
+  display: grid;
+  gap: $space-16;
+}
+
+.account-section label {
+  @include field-label($space-8);
+}
+
+.account-section input:not([type=checkbox]),
+.account-section select,
+.account-section textarea {
+  @include field($space-12);
+  font: inherit;
+}
+
+.profile-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) $size-control-lg;
+  gap: $space-12;
+  align-items: end;
+}
+
+.profile-fields {
+  display: grid;
+  gap: $space-12;
+}
+
+.visibility-toggle {
+  width: $size-control-lg;
+  height: $size-control-lg;
+  border: $border-width solid $color-border;
+  border-radius: $radius-round;
+  background: $color-white;
+  color: $color-error;
+  font-size: $font-size-18;
+}
+
+.visibility-toggle.on {
+  background: $color-primary;
+  border-color: $color-primary;
+  color: $color-white;
+}
+
+.visibility-toggle:focus-visible {
+  @include focus-ring;
+}
+
+.avatar-row {
+  display: flex;
+  gap: $space-20;
+  align-items: center;
+}
+
+.avatar-large {
+  width: $avatar-size-large;
+  height: $avatar-size-large;
+  border-radius: $radius-round;
+  object-fit: cover;
+  flex: none;
+}
+
+.avatar-empty {
+  display: grid;
+  place-items: center;
+  background: $color-surface;
+  color: $color-primary;
+  font-size: $font-size-36;
+  font-weight: 800;
+}
+
+.file-button {
+  display: inline-block;
+  padding: $space-10 $space-16;
+  border: $border-width solid $color-primary;
+  cursor: pointer;
+  font-size: $font-size-base;
+  font-weight: 700;
+}
+
+.file-button:focus-within {
+  @include focus-ring;
+}
+
+.consent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $space-10;
+  font-size: $font-size-base;
+}
+
+.consent-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-12;
+  align-items: center;
+  border-bottom: $border-width solid $color-surface;
+  padding-bottom: $space-10;
+}

@@ -24,21 +24,21 @@ return [
     | --> Warning: Proxy auto generation should only be enabled in dev!
     |
     */
-    'managers'                   => [
+    'managers' => [
         'default' => [
-            'dev'           => env('APP_DEBUG', false),
-            'meta'          => env('DOCTRINE_METADATA', 'attributes'),
-            'connection'    => env('DB_CONNECTION', 'mysql'),
-            'paths'         => [
-                base_path('app/Entities')
+            'dev' => env('APP_DEBUG', false),
+            'meta' => env('DOCTRINE_METADATA', 'attributes'),
+            'connection' => env('DB_CONNECTION', 'mysql'),
+            'paths' => [
+                base_path('app/Entities'),
             ],
 
-            'repository'    => Doctrine\ORM\EntityRepository::class,
+            'repository' => Doctrine\ORM\EntityRepository::class,
 
-            'proxies'       => [
-                'namespace'     => 'DoctrineProxies',
-                'path'          => storage_path('proxies'),
-                'auto_generate' => env('DOCTRINE_PROXY_AUTOGENERATE', false)
+            'proxies' => [
+                'namespace' => 'DoctrineProxies',
+                'path' => storage_path('proxies'),
+                'auto_generate' => env('DOCTRINE_PROXY_AUTOGENERATE', false),
             ],
 
             /*
@@ -50,12 +50,16 @@ return [
             | e.g. Doctrine\ORM\Events::onFlush
             |
             */
-            'events'        => [
-                'listeners'   => [],
-                'subscribers' => []
+            'events' => [
+                'listeners' => [],
+                'subscribers' => [
+                    App\Doctrine\CacheInvalidationSubscriber::class,
+                ],
             ],
 
-            'filters'       => [],
+            'filters' => [
+                'active_users' => App\Doctrine\ActiveUserFilter::class,
+            ],
 
             /*
             |--------------------------------------------------------------------------
@@ -89,8 +93,8 @@ return [
              */
             'middlewares' => [
                 // Doctrine\DBAL\Logging\Middleware::class
-            ]
-        ]
+            ],
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -103,13 +107,13 @@ return [
     | laravel-doctrine/extensions in your composer.json
     |
     */
-    'extensions'                 => [
-        //LaravelDoctrine\Extensions\Timestamps\TimestampableExtension::class,
-        //LaravelDoctrine\Extensions\SoftDeletes\SoftDeleteableExtension::class,
-        //LaravelDoctrine\Extensions\Sluggable\SluggableExtension::class,
+    'extensions' => [
+        LaravelDoctrine\Extensions\Timestamps\TimestampableExtension::class,
+        LaravelDoctrine\Extensions\SoftDeletes\SoftDeleteableExtension::class,
+        LaravelDoctrine\Extensions\Sluggable\SluggableExtension::class,
         //LaravelDoctrine\Extensions\Sortable\SortableExtension::class,
-        //LaravelDoctrine\Extensions\Tree\TreeExtension::class,
-        //LaravelDoctrine\Extensions\Loggable\LoggableExtension::class,
+        LaravelDoctrine\Extensions\Tree\TreeExtension::class,
+        LaravelDoctrine\Extensions\Loggable\LoggableExtension::class,
         //LaravelDoctrine\Extensions\Blameable\BlameableExtension::class,
         //LaravelDoctrine\Extensions\IpTraceable\IpTraceableExtension::class,
         //LaravelDoctrine\Extensions\Translatable\TranslatableExtension::class
@@ -122,32 +126,32 @@ return [
     | Create a custom or override a Doctrine Type
     |--------------------------------------------------------------------------
     */
-    'custom_types'               => [
+    'custom_types' => [
     ],
     /*
     |--------------------------------------------------------------------------
     | DQL custom datetime functions
     |--------------------------------------------------------------------------
     */
-    'custom_datetime_functions'  => [],
+    'custom_datetime_functions' => [],
     /*
     |--------------------------------------------------------------------------
     | DQL custom numeric functions
     |--------------------------------------------------------------------------
     */
-    'custom_numeric_functions'   => [],
+    'custom_numeric_functions' => [],
     /*
     |--------------------------------------------------------------------------
     | DQL custom string functions
     |--------------------------------------------------------------------------
     */
-    'custom_string_functions'    => [],
+    'custom_string_functions' => [],
     /*
     |--------------------------------------------------------------------------
     | Register custom hydrators
     |--------------------------------------------------------------------------
     */
-    'custom_hydration_modes'     => [
+    'custom_hydration_modes' => [
         // e.g. 'hydrationModeName' => MyHydrator::class,
     ],
     /*
@@ -162,20 +166,20 @@ return [
     |
     */
     'cache' => [
-        'second_level'     => false,
-        'default'          => env('DOCTRINE_CACHE', 'array'),
-        'namespace'        => null,
-        'metadata'         => [
-            'driver'       => env('DOCTRINE_METADATA_CACHE', env('DOCTRINE_CACHE', 'array')),
-            'namespace'    => 'metadata',
+        'second_level' => false,
+        'default' => env('DOCTRINE_CACHE', 'array'),
+        'namespace' => null,
+        'metadata' => [
+            'driver' => env('DOCTRINE_METADATA_CACHE', env('DOCTRINE_CACHE', 'array')),
+            'namespace' => 'metadata',
         ],
-        'query'            => [
-            'driver'       => env('DOCTRINE_QUERY_CACHE', env('DOCTRINE_CACHE', 'array')),
-            'namespace'    => 'query',
+        'query' => [
+            'driver' => env('DOCTRINE_QUERY_CACHE', env('DOCTRINE_CACHE', 'array')),
+            'namespace' => 'query',
         ],
-        'result'           => [
-            'driver'       => env('DOCTRINE_RESULT_CACHE', env('DOCTRINE_CACHE', 'array')),
-            'namespace'    => 'result',
+        'result' => [
+            'driver' => env('DOCTRINE_RESULT_CACHE', env('DOCTRINE_CACHE', 'array')),
+            'namespace' => 'result',
         ],
     ],
     /*
@@ -188,8 +192,8 @@ return [
     | laravel-doctrine/extensions in your composer.json
     |
     */
-    'gedmo'                      => [
-        'all_mappings' => false
+    'gedmo' => [
+        'all_mappings' => false,
     ],
     /*
      |--------------------------------------------------------------------------
@@ -209,7 +213,7 @@ return [
      |  Doctrine notifications channel
      |
      */
-    'notifications'              => [
-        'channel' => 'database'
-    ]
+    'notifications' => [
+        'channel' => 'database',
+    ],
 ];

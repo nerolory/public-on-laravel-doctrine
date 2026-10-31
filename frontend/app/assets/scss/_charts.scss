@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+// Цвета рядов графиков по порядку: их читает модуль отрисовки editor/rich-editor/chart-view.ts.
+:root {
+  --chart-color-1: #{$color-primary};
+  --chart-color-2: #{$color-accent};
+  --chart-color-3: #{$color-primary-light};
+  --chart-color-4: #{$color-accent-dark};
+  --chart-color-5: #{$color-lime};
+  --chart-color-6: #{$color-muted};
+}
+
+// Область графика: холст Chart.js занимает её целиком, ширина — по колонке текста.
+.chart-view {
+  position: relative;
+  height: $height-chart;
+}

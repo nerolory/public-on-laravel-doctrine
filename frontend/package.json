@@ -1,0 +1,40 @@
+{
+    "name": "public-app",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "nuxt dev --host 0.0.0.0",
+        "build": "nuxt build",
+        "build:admin": "vite build --config editor/vite.config.ts",
+        "start": "node .output/server/index.mjs",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "typecheck": "nuxt typecheck"
+    },
+    "dependencies": {
+        "@tiptap/core": "^3.32.1",
+        "@tiptap/extension-image": "^3.32.1",
+        "@tiptap/extension-table": "^3.32.1",
+        "@tiptap/pm": "^3.32.1",
+        "@tiptap/starter-kit": "^3.32.1",
+        "@unhead/vue": "^3.4.3",
+        "chart.js": "^4.6.1",
+        "nuxt": "4.6.3",
+        "vue": "^3.5.0",
+        "vue-i18n": "^11.4.16",
+        "vue-router": "^5.4.0"
+    },
+    "devDependencies": {
+        "@nuxt/eslint": "^1.17.0",
+        "@nuxt/fonts": "^1.2.0",
+        "eslint": "^10.13.0",
+        "sass": "^1.107.0",
+        "typescript": "^6.0.3",
+        "vue-tsc": "^3.3.14"
+    },
+    "allowScripts": {
+        "esbuild@0.28.2": true,
+        "unrs-resolver@1.12.2": true,
+        "@parcel/watcher@2.6.0": true
+    }
+}

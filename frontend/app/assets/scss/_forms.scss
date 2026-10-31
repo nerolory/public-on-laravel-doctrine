@@ -1,0 +1,156 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.auth-page {
+  min-height: 70vh;
+  padding: $space-55 0 $space-100;
+}
+
+.back-link {
+  font-size: $font-size-label;
+  font-weight: 700;
+  color: $color-muted;
+}
+
+.form-card {
+  max-width: $width-form;
+  margin: $space-60 auto 0;
+}
+
+.form-card h1 {
+  font-size: $font-size-page-title;
+  margin: $space-24 0 $space-14;
+}
+
+.form-intro {
+  font-size: $font-size-body;
+  color: $color-muted;
+  margin-bottom: $space-35;
+}
+
+.form-card form {
+  display: grid;
+  gap: $space-20;
+}
+
+.form-card label {
+  @include field-label($space-8);
+}
+
+.form-card input {
+  @include field($space-14);
+  outline: none;
+}
+
+.form-card input:focus {
+  @include field-focus;
+}
+
+.primary-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+  background: $color-primary;
+  color: $color-white;
+  padding: $space-16 $space-20;
+  font-weight: 700;
+  font-size: $font-size-base;
+  width: 100%;
+  text-align: left;
+}
+
+.primary-button:disabled {
+  opacity: .6;
+}
+
+.form-foot {
+  font-size: $font-size-label;
+  color: $color-muted;
+  margin-top: $space-26;
+}
+
+.form-foot a {
+  color: $color-primary;
+  font-weight: 800;
+}
+
+.error {
+  color: $color-error;
+  font-size: $font-size-label;
+  line-height: 1.6;
+}
+
+.success {
+  color: $color-success;
+  font-size: $font-size-label;
+}
+
+.text-button {
+  background: none;
+  border: 0;
+  padding: $space-22 0;
+  color: $color-primary-soft;
+  font-weight: 700;
+}
+
+// Кнопка-текст в строке действий: без вертикальных отступов базовой кнопки.
+.text-button-inline {
+  padding: 0;
+}
+
+.danger-zone {
+  border-top: $border-width solid $color-border;
+  margin-top: $space-20;
+  padding-top: $space-22;
+  font-size: $font-size-base;
+  color: $color-danger-text;
+}
+
+.danger-zone summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.danger-zone p {
+  line-height: 1.6;
+}
+
+.danger-button {
+  border: $border-width solid $color-danger;
+  color: $color-danger;
+  background: transparent;
+  padding: $space-12;
+}
+
+.article-input {
+  @include field($space-14);
+  font: inherit;
+  resize: vertical;
+}
+
+.article-input:focus {
+  outline: none;
+  @include field-focus;
+}
+
+.field-hint {
+  font-weight: 500;
+  color: $color-muted;
+}
+
+.dialog-form {
+  display: grid;
+  gap: $space-14;
+}
+
+.dialog-form label {
+  @include field-label($space-8);
+}
+
+.text-link {
+  color: $color-primary;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: $space-3;
+}

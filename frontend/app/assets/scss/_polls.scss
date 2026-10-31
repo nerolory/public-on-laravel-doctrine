@@ -1,0 +1,213 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Опрос: форма в редакторе статьи и блок на странице.
+.poll-editor {
+  display: grid;
+  gap: $space-14;
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  padding: $space-16 $space-18;
+  margin: 0;
+}
+
+.poll-editor legend {
+  padding: 0 $space-6;
+  @include field-caption;
+}
+
+.poll-editor .text-button {
+  justify-self: start;
+}
+
+.poll-editor-options {
+  display: grid;
+  gap: $space-8;
+  margin: 0;
+  padding-left: $space-em-1400;
+}
+
+.poll-editor-options li {
+  display: flex;
+  gap: $space-8;
+  align-items: center;
+}
+
+.poll-editor-options input {
+  flex: 1;
+}
+
+.poll-editor input:not([type=checkbox]) {
+  @include field($space-12);
+}
+
+.poll-editor-remove {
+  width: $size-control;
+  height: $size-control;
+  flex: none;
+  border: $border-width solid $color-border;
+  border-radius: $radius-round;
+  background: $color-white;
+  color: $color-error;
+  font-size: $font-size-18;
+}
+
+.poll {
+  margin: $space-48 0 0;
+  padding: $space-28;
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  background: $color-white;
+}
+
+.poll h2 {
+  margin: $space-8 0;
+  font-size: $font-size-26;
+  letter-spacing: $tracking-n30;
+  overflow-wrap: anywhere;
+}
+
+.poll-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-4 $space-16;
+  margin: 0 0 $space-18;
+  font-size: $font-size-base;
+  color: $color-muted;
+}
+
+.poll-form fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 $space-14;
+  display: grid;
+  gap: $space-8;
+}
+
+.poll-choice {
+  display: flex;
+  gap: $space-10;
+  align-items: flex-start;
+  padding: $space-10 $space-12;
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  font-size: $font-size-text;
+  cursor: pointer;
+}
+
+.poll-choice input {
+  width: $size-icon-sm;
+  height: $size-icon-sm;
+  margin: $space-2 0 0;
+  accent-color: $color-primary;
+  flex: none;
+}
+
+.poll-choice:has(input:checked) {
+  border-color: $color-primary;
+  background: $color-surface;
+}
+
+.poll-choice:has(input:focus-visible) {
+  @include focus-ring;
+}
+
+.poll-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-8 $space-20;
+  align-items: center;
+}
+
+.poll-submit {
+  width: auto;
+}
+
+.poll-results {
+  list-style: none;
+  padding: 0;
+  margin: $space-18 0 0;
+  display: grid;
+  gap: $space-14;
+}
+
+.poll-result-head {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-12;
+  font-size: $font-size-body;
+  overflow-wrap: anywhere;
+}
+
+.poll-result-head small {
+  color: $color-muted;
+}
+
+.poll-mine {
+  color: $color-accent-deep;
+  font-weight: 700;
+}
+
+.poll-bar {
+  height: $size-bar;
+  margin-top: $space-6;
+  border-radius: $radius-soft;
+  background: $color-surface;
+  overflow: hidden;
+}
+
+.poll-bar span {
+  display: block;
+  height: 100%;
+  background: $color-primary;
+  border-radius: $radius-soft;
+}
+
+.poll-results li.mine .poll-bar span {
+  background: $color-accent-mine;
+}
+
+.poll-voters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-4;
+  margin-top: $space-8;
+}
+
+.poll-voter {
+  display: grid;
+  place-items: center;
+  width: $size-badge;
+  height: $size-badge;
+  border-radius: $radius-round;
+  overflow: hidden;
+  background: $color-surface;
+  color: $color-primary;
+  font-size: $font-size-label;
+  font-weight: 800;
+}
+
+.poll-voter img {
+  @include cover-image;
+}
+
+.poll-voters .text-button {
+  padding: 0 0 0 $space-6;
+  font-size: $font-size-label;
+}
+
+.poll-voter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $space-8;
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.poll-voter-list a {
+  text-decoration: underline;
+  text-underline-offset: $space-3;
+}

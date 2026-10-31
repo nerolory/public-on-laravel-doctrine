@@ -1,0 +1,369 @@
+@use '../../app/assets/scss/variables' as *;
+@use '../../app/assets/scss/mixins' as *;
+@use '../../app/assets/scss/content-typography' as *;
+@use '../../app/assets/scss/charts';
+
+// Редактор статьи: общий для сайта и админки. Цвета — переменные, их можно переопределить снаружи.
+.rich-editor {
+  --re-border: #{$color-border};
+  --re-bg: #{$color-white};
+  --re-text: #{$color-text};
+  --re-muted: #{$color-muted};
+  --re-accent: #{$color-primary};
+  --re-focus: #{$color-accent};
+  --re-active: #{$color-surface};
+  display: grid;
+  border: $border-width solid var(--re-border);
+  border-radius: $radius-base;
+  background: var(--re-bg);
+  color: var(--re-text);
+  font-weight: 400;
+}
+
+.rich-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  padding: $space-6;
+  border-bottom: $border-width solid var(--re-border);
+}
+
+.rich-editor-toolbar[hidden] {
+  display: none;
+}
+
+.rich-editor-table {
+  background: var(--re-active);
+}
+
+.rich-editor-button {
+  min-width: $size-control;
+  height: $size-control;
+  padding: 0 $space-8;
+  border: $border-width solid transparent;
+  border-radius: $radius-base;
+  background: none;
+  color: inherit;
+  font-weight: 600;
+  font-size: $font-size-base;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rich-editor-button:hover {
+  background: var(--re-active);
+}
+
+.rich-editor-button[aria-pressed=true] {
+  background: var(--re-accent);
+  color: $color-white;
+}
+
+.rich-editor-button:disabled {
+  opacity: .35;
+  cursor: default;
+  background: none;
+}
+
+.rich-editor-button:focus-visible,
+.rich-editor-remove:focus-visible,
+.rich-editor-text-button:focus-visible,
+.rich-editor-primary:focus-visible {
+  @include focus-ring($focus-offset-tight, var(--re-focus));
+}
+
+.rich-editor-surface {
+  min-height: $editor-surface-min-height;
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.rich-editor-content {
+  min-height: $editor-surface-min-height;
+  padding: $space-16;
+  outline: none;
+  font: #{$font-size-17}/1.75 $font-serif;
+  overflow-wrap: anywhere;
+}
+
+.rich-editor-surface:focus-within {
+  box-shadow: inset 0 0 0 $focus-width-thin var(--re-focus);
+}
+
+.rich-editor-content>*:first-child {
+  margin-top: 0;
+}
+
+.rich-editor-content h2 {
+  @include content-h2($font-size-26, $tracking-n30, $space-28 0 $space-10);
+}
+
+.rich-editor-content h3 {
+  @include content-h3($font-size-20, $space-22 0 $space-8);
+}
+
+.rich-editor-content blockquote {
+  @include content-blockquote($space-16 0, $space-16, var(--re-focus), var(--re-muted));
+}
+
+.rich-editor-content pre {
+  @include content-pre($space-12, $color-code-bg, $font-size-body);
+}
+
+.rich-editor-content a {
+  color: var(--re-accent);
+  text-decoration: underline;
+}
+
+.rich-editor-content figure {
+  margin: $space-20 0;
+}
+
+.rich-editor-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.rich-editor-content figcaption {
+  @include content-figcaption($space-6, var(--re-muted));
+}
+
+.rich-editor-content .ProseMirror-selectednode {
+  @include focus-ring(0, var(--re-focus));
+}
+
+.rich-editor-content table {
+  @include content-table($space-16 0, $font-size-body);
+}
+
+.rich-editor-content {
+  @include content-cell(var(--re-border), $space-6 $space-8) {
+    position: relative;
+  }
+}
+
+.rich-editor-content th {
+  background: var(--re-active);
+  text-align: left;
+}
+
+.rich-editor-content .selectedCell {
+  background: rgba($color-border,.5);
+}
+
+.rich-editor-status {
+  margin: 0;
+  padding: 0 $space-12;
+  min-height: 0;
+  font-size: $font-size-label;
+  color: var(--re-muted);
+}
+
+.rich-editor-status:not(:empty) {
+  padding: $space-8 $space-12;
+}
+
+.rich-editor-dialog {
+  width: min($editor-dialog-width,calc(100vw - #{2 * $gutter-dialog}));
+  max-height: calc(100vh - #{2 * $gutter-dialog});
+  border: $border-width solid var(--re-border,$color-border);
+  border-radius: $radius-base;
+  padding: $space-24;
+  color: $color-text;
+  background: $color-white;
+}
+
+.rich-editor-dialog-wide {
+  width: min($editor-dialog-width-wide,calc(100vw - #{2 * $gutter-dialog}));
+}
+
+.rich-editor-dialog::backdrop {
+  background: rgba($color-text,.4);
+}
+
+.rich-editor-dialog h2 {
+  margin: 0 0 $space-4;
+  font: 700 #{$font-size-20}/1.3 $font-sans;
+}
+
+.rich-editor-dialog-form {
+  display: grid;
+  gap: $space-14;
+}
+
+.rich-editor-field {
+  display: grid;
+  gap: $space-6;
+  font: 700 #{$font-size-label}/1.4 $font-sans;
+}
+
+.rich-editor-field input,
+.rich-editor-field select,
+.rich-editor-grid input {
+  width: 100%;
+  padding: $space-10;
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  background: $color-white;
+  color: inherit;
+  font: 400 #{$font-size-body}/1.4 $font-sans;
+}
+
+.rich-editor-field input:focus-visible,
+.rich-editor-field select:focus-visible,
+.rich-editor-grid input:focus-visible {
+  @include focus-ring(0, var(--re-focus));
+}
+
+.rich-editor-hint {
+  margin: 0;
+  font: #{$font-size-label}/1.5 $font-sans;
+  color: $color-muted;
+}
+
+.rich-editor-grid-wrap {
+  overflow: auto;
+}
+
+.rich-editor-grid {
+  border-collapse: collapse;
+  min-width: 100%;
+}
+
+.rich-editor-grid th,
+.rich-editor-grid td {
+  padding: $space-3;
+  vertical-align: middle;
+}
+
+.rich-editor-grid th {
+  font: 700 #{$font-size-label}/1.4 $font-sans;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rich-editor-grid th input {
+  display: inline-block;
+  width: calc(100% - $size-control);
+  min-width: $width-input-min;
+}
+
+.rich-editor-grid input {
+  min-width: $width-input-min-compact;
+  padding: $space-8;
+}
+
+.rich-editor-grid-controls,
+.rich-editor-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-8 $space-16;
+  align-items: center;
+}
+
+.rich-editor-primary {
+  padding: $space-12 $space-18;
+  border: 0;
+  border-radius: $radius-base;
+  background: $color-primary;
+  color: $color-white;
+  font: 700 #{$font-size-base}/1 $font-sans;
+  cursor: pointer;
+}
+
+.rich-editor-primary:disabled {
+  opacity: .6;
+}
+
+.rich-editor-text-button {
+  padding: $space-8 0;
+  border: 0;
+  background: none;
+  color: $color-primary;
+  font: 700 #{$font-size-base}/1.2 $font-sans;
+  text-decoration: underline;
+  text-underline-offset: $space-3;
+  cursor: pointer;
+}
+
+.rich-editor-text-button[hidden] {
+  display: none;
+}
+
+.rich-editor-remove {
+  width: $size-control-sm;
+  height: $size-control-sm;
+  margin-left: $space-4;
+  border: $border-width solid $color-border;
+  border-radius: $radius-round;
+  background: $color-white;
+  color: $color-error;
+  font-size: $font-size-16;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rich-editor-error {
+  margin: 0;
+  color: $color-error;
+  font: #{$font-size-label}/1.5 $font-sans;
+}
+
+.rich-editor-error:empty {
+  display: none;
+}
+
+.rich-editor-cover {
+  display: grid;
+  gap: $space-8;
+  justify-items: start;
+  margin-top: $space-8;
+}
+
+.rich-editor-cover img {
+  max-width: min(100%,$width-media-max);
+  height: auto;
+  border-radius: $radius-base;
+}
+
+.rich-editor-cover img[hidden],
+.rich-editor-cover [hidden] {
+  display: none;
+}
+
+.rich-editor-cover label:focus-within {
+  @include focus-ring($focus-offset, var(--re-focus));
+}
+
+.rich-editor-visually-hidden {
+  @include visually-hidden;
+}
+
+.rich-editor-content .rich-editor-album {
+  display: grid;
+  place-items: center;
+  min-height: $height-album-placeholder;
+  padding: $space-16;
+  border: $border-width-thick dashed var(--re-border);
+  border-radius: $radius-base;
+  background: var(--re-active);
+}
+
+.rich-editor-content .rich-editor-album::before {
+  content: '🗂';
+  font-size: $font-size-28;
+}
+
+.rich-editor-content .rich-editor-album figcaption {
+  margin: $space-6 0 0;
+  font-weight: 700;
+  color: var(--re-text);
+}
+
+.rich-editor-content .rich-editor-album[data-layout=collage]::after {
+  content: '▦';
+  font-size: $font-size-body;
+  color: var(--re-muted);
+}

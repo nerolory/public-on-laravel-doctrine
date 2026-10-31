@@ -1,0 +1,64 @@
+@use 'variables' as *;
+
+// Типографика содержимого статьи: сайт и редактор подключают миксины внутри своих блоков и передают свои значения.
+
+// Заголовок второго уровня: кегль, трекинг и отступы.
+@mixin content-h2($size, $tracking, $margin) {
+  font: 700 #{$size}/1.25 $font-sans;
+  letter-spacing: $tracking;
+  margin: $margin;
+}
+
+// Заголовок третьего уровня: трекинг подключается, если он задан.
+@mixin content-h3($size, $margin, $tracking: null) {
+  font: 700 #{$size}/1.3 $font-sans;
+
+  @if $tracking {
+    letter-spacing: $tracking;
+  }
+
+  margin: $margin;
+}
+
+// Цитата: отступы, цвет левой полосы и текста.
+@mixin content-blockquote($margin, $padding-left, $border-color, $color) {
+  margin: $margin;
+  padding-left: $padding-left;
+  border-left: $border-width-accent solid $border-color;
+  color: $color;
+}
+
+// Блок кода: отступы, фон и кегль моноширинного шрифта.
+@mixin content-pre($padding, $background, $size) {
+  padding: $padding;
+  background: $background;
+  border-radius: $radius-base;
+  font: #{$size}/1.6 $font-mono;
+  overflow: auto;
+}
+
+// Подпись к рисунку: отступ сверху и цвет.
+@mixin content-figcaption($margin-top, $color) {
+  margin-top: $margin-top;
+  font: #{$font-size-base}/1.5 $font-sans;
+  color: $color;
+}
+
+// Таблица: отступы и кегль текста.
+@mixin content-table($margin, $size) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $margin;
+  font: #{$size}/1.5 $font-sans;
+}
+
+// Ячейки таблицы: рамка, отступы и выравнивание по верху; дополнительные свойства передаются блоком.
+@mixin content-cell($border-color, $padding) {
+  th,
+  td {
+    border: $border-width solid $border-color;
+    padding: $padding;
+    vertical-align: top;
+    @content;
+  }
+}

@@ -2,6 +2,11 @@
 
 return [
 
+    'providers' => Illuminate\Support\ServiceProvider::defaultProviders()->replace([
+        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class
+            => LaravelDoctrine\ORM\Auth\Passwords\PasswordResetServiceProvider::class,
+    ])->toArray(),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

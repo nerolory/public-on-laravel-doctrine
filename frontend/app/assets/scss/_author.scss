@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+// Карточка автора.
+.author-head {
+  display: flex;
+  gap: $space-24;
+  align-items: center;
+}
+
+.author-head h1 {
+  margin: $space-10 0;
+}
+
+.author-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-12;
+  font-size: $font-size-base;
+  font-weight: 700;
+}
+
+.author-links a {
+  text-decoration: underline;
+  text-underline-offset: $space-3;
+}
+
+.author-articles {
+  margin-top: $space-48;
+}
+
+@media (max-width:$bp-600) {
+  .avatar-row,
+  .author-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

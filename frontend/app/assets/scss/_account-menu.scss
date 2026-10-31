@@ -1,0 +1,63 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Меню под аватаром.
+.account-menu {
+  position: relative;
+}
+
+.avatar-button {
+  display: grid;
+  place-items: center;
+  width: $avatar-size-medium;
+  height: $avatar-size-medium;
+  padding: 0;
+  border: $border-width solid $color-border-strong;
+  border-radius: $radius-round;
+  background: $color-surface;
+  color: $color-primary;
+  font-weight: 800;
+  overflow: hidden;
+}
+
+.avatar-button img {
+  @include cover-image;
+}
+
+.avatar-button:focus-visible {
+  @include focus-ring;
+}
+
+.account-dropdown {
+  @include dropdown-panel;
+  right: 0;
+  top: calc(100% + $space-8);
+  z-index: $z-menu;
+  min-width: $width-menu-min;
+  display: grid;
+  padding: $space-8;
+}
+
+.account-dropdown a,
+.account-dropdown button {
+  display: block;
+  padding: $space-10 $space-12;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-size: $font-size-base;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.account-dropdown a:hover,
+.account-dropdown button:hover {
+  background: $color-surface;
+}
+
+.account-dropdown-name {
+  margin: $space-4 $space-12 $space-8;
+  font-size: $font-size-caption;
+  color: $color-muted;
+  overflow-wrap: anywhere;
+}

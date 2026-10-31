@@ -1,0 +1,45 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Поля формы статьи.
+.field-label {
+  @include field-caption;
+}
+
+.editor-field {
+  display: grid;
+  gap: $space-8;
+  container-type: inline-size;
+}
+
+// Место редактора до загрузки в браузере: высота совпадает с редактором, форма под ним не сдвигается.
+.editor-placeholder {
+  min-height: editor-height-for-rows($editor-toolbar-rows-narrow);
+  border: $border-width solid $color-border;
+  border-radius: $radius-base;
+  background: $color-white;
+}
+
+@container (min-width: #{editor-width-for-buttons($editor-toolbar-row-buttons)}) {
+  .editor-placeholder {
+    min-height: editor-height-for-rows($editor-toolbar-rows);
+  }
+}
+
+.cover-field {
+  display: grid;
+  gap: $space-10;
+}
+
+.cover-preview {
+  width: 100%;
+  height: auto;
+  border-radius: $radius-base;
+}
+
+.cover-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-8 $space-20;
+}

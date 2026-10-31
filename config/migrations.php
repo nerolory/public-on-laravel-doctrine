@@ -27,7 +27,7 @@ return [
             | the migrations on disk haven't actually been run in the database.
             |
             */
-            'table_name'     => 'doctrine_migration_versions',
+            'table_name' => 'doctrine_migration_versions',
 
             /*
             |--------------------------------------------------------------------------
@@ -39,11 +39,14 @@ return [
             | filter all tables.
             |
             */
-            'schema_filter'    => '/^(?!doctrine_migration_versions$).*$/'
+            // Служебные таблицы Laravel без сущностей Doctrine: сравнение схемы их не удаляет.
+            'schema_filter' => '/^(?!(?:'
+                . 'doctrine_migration_versions|password_reset_tokens|failed_jobs|job_batches'
+                . ')$).*$/',
         ],
 
         'migrations_paths' => [
-            'Database\\DoctrineMigrations' => database_path('doctrine-migrations')
+            'Database\\DoctrineMigrations' => database_path('doctrine-migrations'),
         ],
 
         /*

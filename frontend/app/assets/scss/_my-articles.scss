@@ -1,0 +1,144 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Статусы статей, «Мои статьи» и действия автора.
+.status-badge {
+  display: inline-block;
+  padding: $space-4 $space-10;
+  border-radius: $radius-pill;
+  @include caption-caps($font-size-caption, $tracking-20, 800);
+}
+
+.status-badge.status-pending {
+  background: $color-pending-bg;
+  color: $color-pending-text;
+}
+
+.status-badge.status-published {
+  background: $color-published-bg;
+  color: $color-published-text;
+}
+
+.status-badge.status-rejected {
+  background: $color-rejected-bg;
+  color: $color-error-dark;
+}
+
+.status-banner {
+  margin: $space-40 0 0;
+  padding: $space-16 $space-18;
+  border: $border-width solid $color-pending-border;
+  background: $color-pending-surface;
+  font-size: $font-size-body;
+  line-height: 1.6;
+}
+
+.status-banner.status-rejected {
+  border-color: $color-rejected-border;
+  background: $color-error-surface;
+}
+
+.status-banner p {
+  margin: 0;
+}
+
+.status-banner p+p {
+  margin-top: $space-8;
+}
+
+.rejection-note {
+  margin: 0;
+  padding: $space-12 $space-14;
+  border-left: $border-width-accent solid $color-rejection;
+  background: $color-error-surface;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $color-rejection-text;
+  overflow-wrap: anywhere;
+}
+
+.status-banner .rejection-note {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6 $space-18;
+  font-size: $font-size-base;
+  color: $color-muted;
+  margin: 0 0 $space-24;
+}
+
+.article-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-8 $space-22;
+  margin: 0 0 $space-24;
+  font-size: $font-size-base;
+}
+
+.danger-text {
+  color: $color-error;
+  text-decoration: underline;
+  text-underline-offset: $space-3;
+}
+
+.chip-count {
+  margin-left: $space-4;
+  opacity: .75;
+}
+
+.my-article-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+}
+
+.my-article {
+  display: grid;
+  gap: $space-10;
+  padding: $space-24 0;
+  border-top: $border-width solid $color-border;
+}
+
+.my-article:last-child {
+  border-bottom: $border-width solid $color-border;
+}
+
+.my-article h2 {
+  margin: 0;
+  font-size: $font-size-24;
+  letter-spacing: $tracking-n30;
+  overflow-wrap: anywhere;
+}
+
+.my-article h2 a:hover {
+  color: $color-accent-dark;
+}
+
+.my-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-6 $space-14;
+  margin: 0;
+  font-size: $font-size-label;
+  color: $color-muted;
+}
+
+.my-article-excerpt {
+  margin: 0;
+  font-size: $font-size-body;
+  line-height: 1.7;
+  color: $color-text-soft;
+  overflow-wrap: anywhere;
+}
+
+.my-article .article-actions {
+  margin: 0;
+}

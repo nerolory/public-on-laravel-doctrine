@@ -1,0 +1,25 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Переключатель языка.
+.language-switch {
+  display: flex;
+  gap: $space-4;
+}
+
+.language-switch a {
+  font-family: $font-label;
+  @include caption-caps($font-size-tag, $tracking-120, 700);
+  padding: $space-6 $space-8;
+  border-radius: $radius-pill;
+  color: $color-text-soft;
+}
+
+.language-switch a.active {
+  background: $color-primary;
+  color: $color-white;
+}
+
+.language-switch a:hover:not(.active) {
+  color: $color-accent-dark;
+}

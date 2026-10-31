@@ -1,0 +1,154 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Альбомы: вставка в статью (слайдер и коллаж без скриптов), страница альбома и форма.
+.article-body .album {
+  margin: $space-em-2000 0;
+}
+
+.article-body .album-track {
+  outline-offset: $focus-offset-loose;
+}
+
+.article-body .album-track:focus-visible {
+  @include focus-ring($focus-offset-loose);
+}
+
+.article-body .album-slider .album-track {
+  display: flex;
+  gap: $space-12;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: $space-8;
+}
+
+.article-body .album-slider img {
+  flex: 0 0 90%;
+  max-width: $width-album-slider;
+  height: auto;
+  scroll-snap-align: center;
+  border-radius: $radius-base;
+}
+
+.article-body .album-collage .album-track {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax($width-card-min,1fr));
+  gap: $space-8;
+}
+
+.article-body .album-collage img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: $radius-base;
+}
+
+.article-body .album-collage img:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.album-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-6;
+}
+
+.album-thumbs img {
+  width: $thumb-width-md;
+  height: $thumb-height-md;
+  object-fit: cover;
+  border-radius: $radius-base;
+}
+
+.album-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax($width-card-wide-min,1fr));
+  gap: $space-16;
+  margin-top: $space-32;
+}
+
+.album-page-grid figure {
+  margin: 0;
+}
+
+.album-page-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: $radius-base;
+}
+
+.album-page-grid figcaption {
+  margin-top: $space-6;
+  font-size: $font-size-base;
+  color: $color-muted;
+}
+
+.album-form {
+  display: grid;
+  gap: $space-18;
+}
+
+.album-form-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $space-12;
+}
+
+.album-form-items li {
+  display: grid;
+  grid-template-columns: $thumb-width-lg minmax(0,1fr) auto;
+  gap: $space-12;
+  align-items: center;
+}
+
+.album-form-items img {
+  width: $thumb-width-lg;
+  height: $thumb-height-lg;
+  object-fit: cover;
+  border-radius: $radius-base;
+}
+
+.album-form-alt {
+  @include field-label($space-6);
+}
+
+.album-form-tools {
+  display: flex;
+  gap: $space-4;
+}
+
+.album-form-tools button {
+  width: $size-control;
+  height: $size-control;
+  border: $border-width solid $color-border;
+  border-radius: $radius-round;
+  background: $color-white;
+  font-size: $font-size-16;
+}
+
+.album-form-tools button:disabled {
+  opacity: .35;
+}
+
+.album-form-tools button:focus-visible {
+  @include focus-ring;
+}
+
+@media (max-width:$bp-600) {
+  .album-form-items li {
+    grid-template-columns: $thumb-width-sm minmax(0,1fr);
+  }
+
+  .album-form-items img {
+    width: $thumb-width-sm;
+    height: $thumb-height-sm;
+  }
+
+  .album-form-tools {
+    grid-column: 1/-1;
+  }
+}

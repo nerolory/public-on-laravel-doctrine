@@ -1,0 +1,38 @@
+@use '../../../app/assets/scss/variables' as *;
+@use 'variables' as *;
+
+.statistics__periods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $admin-space-40;
+}
+
+.statistics__totals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax($admin-width-stat-min,1fr));
+  gap: $admin-space-75;
+  margin: $admin-space-100 0;
+}
+
+.statistics__totals div {
+  padding: $admin-space-90 $admin-space-100;
+  border: $border-width solid rgba($color-slate,.25);
+  border-radius: $admin-radius-stat;
+}
+
+.statistics__totals dt {
+  font-size: $admin-font-sm;
+  opacity: .7;
+}
+
+.statistics__totals dd {
+  margin: $admin-space-20 0 0;
+  font-size: $admin-font-3xl;
+  font-weight: 700;
+}
+
+.statistics__tops {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax($admin-width-tops-min,1fr));
+  gap: $admin-space-150;
+}
