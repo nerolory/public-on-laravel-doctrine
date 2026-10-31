@@ -1,0 +1,200 @@
+# Проверки проекта на каждый push в master и на каждый pull request: стиль кода, тесты, база данных и фронтенд.
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# Новый push в ту же ветку отменяет устаревший прогон.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # Версии совпадают с образами Docker: php:8.4-fpm (Dockerfile) и node:24 (compose.yaml).
+  PHP_VERSION: '8.4'
+  NODE_VERSION: '24'
+  # Расширения PHP из Dockerfile; pdo_sqlite нужен тестам на базе в памяти.
+  PHP_EXTENSIONS: pdo_pgsql, pdo_sqlite, zip, pcntl, bcmath, mbstring, dom, xml, xmlwriter, gd, intl, exif, redis
+
+jobs:
+  php-style:
+    name: PHP — стиль и зависимости
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          coverage: none
+
+      - name: Проверка composer.json и composer.lock
+        run: composer validate --no-check-publish
+
+      - name: Установка зависимостей
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Стиль PHP (Pint, pint.json)
+        run: vendor/bin/pint --test
+
+      - name: Уязвимости PHP-зависимостей
+        run: composer audit --no-interaction
+
+  php-tests:
+    name: PHP — тесты
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # Страницы админки подключают ассеты по манифесту public/build/admin; в репозитории сборки нет.
+      - name: Сборка ассетов админки
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build:admin
+
+      - name: Ассеты админки в public/build/admin
+        run: |
+          mkdir -p public/build
+          cp -r frontend/editor/dist public/build/admin
+
+      - name: Окружение приложения
+        run: |
+          cp .env.example .env
+          mkdir -p storage/proxies
+
+      - name: Установка зависимостей
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Ключ приложения
+        run: php artisan key:generate --no-interaction
+
+      # Компиляция всех шаблонов Blade: ошибка в шаблоне, который не открывают тесты, видна сразу.
+      - name: Шаблоны Blade
+        run: php artisan view:cache
+
+      # Тесты строят схему в SQLite в памяти (tests/DoctrineTestCase.php), внешние сервисы не нужны.
+      - name: PHPUnit
+        run: php artisan test
+
+  database:
+    name: База данных — миграции и сидеры
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: laravel_doctrine
+          POSTGRES_USER: laravel
+          POSTGRES_PASSWORD: ci-password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U laravel -d laravel_doctrine"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PASSWORD: ci-password
+      # Сидеры работают без Redis: кеш, сессии и очередь в памяти процесса.
+      CACHE_STORE: array
+      SESSION_DRIVER: array
+      QUEUE_CONNECTION: sync
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          coverage: none
+
+      - name: Окружение приложения
+        run: |
+          cp .env.example .env
+          mkdir -p storage/proxies
+
+      - name: Установка зависимостей
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Ключ приложения
+        run: php artisan key:generate --no-interaction
+
+      - name: Сопоставление сущностей Doctrine
+        run: php artisan doctrine:schema:validate --skip-sync
+
+      - name: Миграции на чистой базе
+        run: php artisan doctrine:migrations:migrate --no-interaction
+
+      # Сидеры установки из README: роли, языки, правовые документы, настройки и разделы.
+      - name: Сидеры установки
+        run: |
+          php artisan db:seed --class=RoleSeeder --no-interaction
+          php artisan db:seed --class=LanguageSeeder --no-interaction
+          php artisan db:seed --class=LegalDocumentSeeder --no-interaction
+          php artisan db:seed --class=SettingsSeeder --no-interaction
+          php artisan db:seed --class=ArticleSectionSeeder --no-interaction
+
+      # Схема после миграций совпадает с сущностями: diff не создаёт новой миграции.
+      - name: Миграции соответствуют сущностям
+        run: |
+          php artisan doctrine:migrations:diff --no-interaction
+          generated="$(git ls-files --others --exclude-standard -- database/doctrine-migrations)"
+          if [ -n "$generated" ]; then
+            echo "::error::Сущности расходятся с миграциями. Сгенерируйте миграцию: php artisan doctrine:migrations:diff"
+            cat $generated
+            exit 1
+          fi
+
+  frontend:
+    name: Фронтенд — стиль, типы и сборка
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Установка зависимостей
+        run: npm ci
+
+      # Конфигурация ESLint и типы берутся из .nuxt, который создаёт nuxt prepare.
+      - name: Подготовка Nuxt
+        run: npx nuxt prepare
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Проверка типов
+        run: npm run typecheck
+
+      - name: Сборка сайта
+        run: npm run build
+
+      - name: Сборка ассетов админки
+        run: npm run build:admin

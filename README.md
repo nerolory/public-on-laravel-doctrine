@@ -309,4 +309,11 @@ docker compose exec frontend npm run build
 docker compose ps
 ```
 
+Те же проверки GitHub Actions выполняет на каждый push в `master` и на каждый pull request (`.github/workflows/ci.yml`):
+
+- **PHP — стиль и зависимости.** `composer validate`, Pint и `composer audit`.
+- **PHP — тесты.** Сборка ассетов админки, компиляция шаблонов Blade и PHPUnit.
+- **База данных.** Сопоставление сущностей, миграции и сидеры установки на чистом PostgreSQL. Если сущности расходятся с миграциями, `doctrine:migrations:diff` создаёт новую миграцию, и проверка падает.
+- **Фронтенд.** ESLint, проверка типов, сборка сайта и ассетов админки.
+
 Сброс пароля и восстановление удалённых пользователей в проект не входят.
